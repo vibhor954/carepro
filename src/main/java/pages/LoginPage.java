@@ -68,16 +68,11 @@ public class LoginPage extends CommonLoginPage {
             commonFunctions.clickElement(moreImage,5);
             commonFunctions.clickElement(logoutLink,5);
             commonFunctions.clickElement(yesButton,5);
+            String email_text= commonFunctions.getElementText(useridoremailInputBox,5);
 
-//            String email_text=useridoremailInputBox.getAttribute("value");
-//             if (email_text.equalsIgnoreCase(email)){
-//                 isUserLoggedIn=true;
-//             }
-
-
-           // isUserLoggedIn = commonFunctions.isElementDisplayed(personalImage, 10);
-
-
+             if (email_text.equalsIgnoreCase(email)){
+                 isUserLoggedIn=true;
+             }
 
             Utils.logFunctionLevelLogs(isUserLoggedIn, "loginwithvalidcredentials" + globalVars.getPlatform());
         } catch (Exception e) {
