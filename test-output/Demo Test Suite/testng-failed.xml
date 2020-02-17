@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Demo Test Suite]">
+  <listeners>
+    <listener class-name="listener.AnnotationTransformer"/>
+    <listener class-name="listener.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="DemoTestHdfc(failed)">
+    <classes>
+      <class name="DemoTest">
+        <methods>
+          <include name="tearDownSuite"/>
+          <include name="loginTest" invocation-numbers="0"/>
+          <include name="initializeExtentTest"/>
+          <include name="closeDriver"/>
+          <include name="classDataInitializer"/>
+          <include name="before"/>
+          <include name="afterMethod"/>
+          <include name="loginTest1" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- DemoTest -->
+    </classes>
+  </test> <!-- DemoTestHdfc(failed) -->
+</suite> <!-- Failed suite [Demo Test Suite] -->
