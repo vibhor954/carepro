@@ -366,6 +366,17 @@ public class GlobalVars {
         return getClassDataElementMap().get(methodName).getParams().trim().split(",")[1];
     }
 
+    public String getThirdParam(String methodName) {
+        return getClassDataElementMap().get(methodName).getParams().trim().split(",")[2];
+    }
+
+    public String getFourthParam(String methodName) {
+        return getClassDataElementMap().get(methodName).getParams().trim().split(",")[3];
+    }
+    public String getFifthParam(String methodName) {
+        return getClassDataElementMap().get(methodName).getParams().trim().split(",")[4];
+    }
+
     public String getLog4jPath() {
         return getWorkingDir() + "/log4j.xml";
     }

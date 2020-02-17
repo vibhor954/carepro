@@ -42,6 +42,25 @@ public class CommonFunctionsMobile extends CommonFunctions {
     }
 
     @Override
+    public boolean clear(WebElement element, int timeOutInSsec) {
+        boolean isElementCleared=false;
+        try{
+            manageImplicitTimeOut(0);
+            wait=new WebDriverWait(driver, timeOutInSsec);
+            //wait.until(ExpectedConditions.visibilityOf(element)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
+            isElementCleared=true;
+        }
+        catch (Exception e) {
+            logger.error("Exception occurred in clear method: "+e.getMessage());
+            manageImplicitTimeOut(globalVars.getImplicitWait());
+        }
+        manageImplicitTimeOut(globalVars.getImplicitWait());
+        Utils.logFunctionLevelLogs(isElementCleared, "clear");
+        return isElementCleared;
+    }
+
+    @Override
     public void sendKey(WebElement element, String key, int timeOutInSsec) {
         try {
             manageImplicitTimeOut(0);//Setting the implicit wait as zero as implicit and explicit wait do not work together

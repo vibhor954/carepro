@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import utils.CommonFunctions;
 import utils.Utils;
 
+import java.time.Duration;
+
 public class LoginPage extends CommonLoginPage {
     //private AndroidDriver<AndroidElement> driver;
 
@@ -38,6 +40,8 @@ public class LoginPage extends CommonLoginPage {
     AndroidElement logoutLink;
     @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
     AndroidElement yesButton;
+    @AndroidFindBy(xpath = "//*[@text='Login id/password is wrong…']")
+    AndroidElement toastmessageText;
 
 
     public LoginPage() {
@@ -63,16 +67,16 @@ public class LoginPage extends CommonLoginPage {
 
             commonFunctions.sendKey(useridoremailInputBox, email, 5);
             commonFunctions.sendKey(passwordInputBox, password, 5);
-            commonFunctions.clickElement(remembermeToggle,5);
+            commonFunctions.clickElement(remembermeToggle, 5);
             commonFunctions.clickElement(loginButton, 5);
-            commonFunctions.clickElement(moreImage,5);
-            commonFunctions.clickElement(logoutLink,5);
-            commonFunctions.clickElement(yesButton,5);
-            String email_text= commonFunctions.getElementText(useridoremailInputBox,5);
+            commonFunctions.clickElement(moreImage, 5);
+            commonFunctions.clickElement(logoutLink, 5);
+            commonFunctions.clickElement(yesButton, 5);
+            String email_text = commonFunctions.getElementText(useridoremailInputBox, 5);
 
-             if (email_text.equalsIgnoreCase(email)){
-                 isUserLoggedIn=true;
-             }
+            if (email_text.equalsIgnoreCase(email)) {
+                isUserLoggedIn = true;
+            }
 
             Utils.logFunctionLevelLogs(isUserLoggedIn, "loginwithvalidcredentials" + globalVars.getPlatform());
         } catch (Exception e) {
@@ -81,6 +85,56 @@ public class LoginPage extends CommonLoginPage {
         }
         Log.info("**********Login method ended" + globalVars.getPlatform() + "*********");
         return isUserLoggedIn;
+    }
+
+    @Override
+    public boolean loginwithinvalidcredentials(String invalid_username, String invalid_password, String message, String valid_username, String valid_password) throws InterruptedException {
+        boolean isUserLoggedIn = true;
+        boolean isUserLoggedInAfterAppRepoen = false;
+        boolean isPass = false;
+
+        commonFunctions.clickElement(loginButton, 5);
+        Thread.sleep(2000);
+        if (driver.getPageSource().contains(message)) {
+            isUserLoggedIn = false;
+        }
+        commonFunctions.sendKey(useridoremailInputBox, invalid_username, 5);
+        commonFunctions.sendKey(passwordInputBox, invalid_password, 5);
+        commonFunctions.clickElement(loginButton, 5);
+
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//*[@text='Login id/password is wrong…']").size() > 0) {
+            isUserLoggedIn = false;
+        } else {
+            isUserLoggedIn = true;
+        }
+        commonFunctions.clear(useridoremailInputBox, 5);
+        commonFunctions.sendKey(useridoremailInputBox, valid_username, 5);
+        commonFunctions.clear(passwordInputBox, 5);
+        commonFunctions.sendKey(passwordInputBox, invalid_password, 5);
+        commonFunctions.clickElement(loginButton, 5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//*[@text='Login id/password is wrong…']").size() > 0) {
+            isUserLoggedIn = false;
+        } else {
+            isUserLoggedIn = true;
+        }
+        commonFunctions.clear(useridoremailInputBox, 5);
+        commonFunctions.sendKey(useridoremailInputBox, valid_username, 5);
+        commonFunctions.clear(passwordInputBox, 5);
+        commonFunctions.sendKey(passwordInputBox, valid_password, 5);
+        commonFunctions.clickElement(loginButton, 5);
+        Thread.sleep(2000);
+        driver.runAppInBackground(Duration.ofSeconds(2));
+        if (driver.findElementsById("com.care_pro:id/iv_more").size() > 0) {
+            isUserLoggedInAfterAppRepoen = true;
+        }
+
+        if (isUserLoggedIn == false && isUserLoggedInAfterAppRepoen == true) {
+            isPass = true;
+        }
+
+        return isPass;
     }
 
     @Override

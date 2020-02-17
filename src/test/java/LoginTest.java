@@ -43,6 +43,31 @@ public class LoginTest {
 
     }
 
+    @Test()
+    public void loginwithinvalidcredentials() throws InterruptedException {
+        boolean isResult = false;
+        System.out.println("Here");
+
+        String invalid_email = "";
+        String invalid_password = "";
+        String message = "";
+        String valid_email = "";
+        String valid_password = "";
+        String currentMethodName = "loginwithinvalidcredentials";
+        commonLoginPage = CommonLoginPage.getInstance();
+
+        invalid_email = globalVars.getFirstParam(currentMethodName);
+        invalid_password = globalVars.getSecondParam(currentMethodName);
+        message = globalVars.getThirdParam(currentMethodName);
+        valid_email = globalVars.getFourthParam(currentMethodName);
+        valid_password = globalVars.getFifthParam(currentMethodName);
+
+        isResult = commonLoginPage.loginwithinvalidcredentials(invalid_email, invalid_password, message, valid_email, valid_password);
+        Utils.logStepInfo(isResult, "Login with Invalid credentials");
+        Assert.isTrue(isResult, "Step-1: User Passed to Login!");
+
+    }
+
     @AfterTest
     public void closeDriver(ITestContext context) {
         TestBase.tearDownSuite(context);
