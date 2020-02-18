@@ -12,7 +12,12 @@ import org.openqa.selenium.support.PageFactory;
 import utils.CommonFunctions;
 import utils.Utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class LoginPage extends CommonLoginPage {
     //private AndroidDriver<AndroidElement> driver;
@@ -42,6 +47,7 @@ public class LoginPage extends CommonLoginPage {
     AndroidElement yesButton;
     @AndroidFindBy(xpath = "//*[@text='Login id/password is wrong…']")
     AndroidElement toastmessageText;
+
 
 
     public LoginPage() {
@@ -140,6 +146,18 @@ public class LoginPage extends CommonLoginPage {
     @Override
     public boolean logout() {
         return false;
+    }
+
+    @Override
+    public void login() throws IOException {
+        File f=new File(System.getProperty("user.dir")+"//src//main//resources//commondata.properties");
+        FileInputStream fs=new FileInputStream(f);
+        Properties prop = new Properties();
+        prop.load(fs);
+        commonFunctions.sendKey(useridoremailInputBox, prop.getProperty("username"), 5);
+        commonFunctions.sendKey(passwordInputBox, prop.getProperty("password"), 5);
+        commonFunctions.clickElement(remembermeToggle, 5);
+        commonFunctions.clickElement(loginButton, 5);
     }
 
 }

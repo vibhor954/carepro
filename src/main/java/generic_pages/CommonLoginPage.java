@@ -5,6 +5,9 @@ import org.apache.log4j.Logger;
 import utils.Constants;
 import utils.GlobalVars;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 // Compare this to a default method in an interface Java 8
 public abstract class CommonLoginPage {
@@ -32,5 +35,7 @@ public abstract class CommonLoginPage {
     public abstract boolean loginwithinvalidcredentials(String invalid_username, String invalid_password, String message, String valid_username, String valid_password) throws InterruptedException;
 
     public abstract boolean logout();
+
+    public abstract void login() throws IOException;
 }
 
