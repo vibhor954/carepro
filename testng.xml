@@ -13,6 +13,7 @@
             <class name="LoginTest"/>
             <class name="ForgotPasswordTest"/>
             <class name="EmailTest"/>
+            <class name="SpritualityTest"/>
 
         </classes>
     </test>

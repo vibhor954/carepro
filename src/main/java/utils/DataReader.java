@@ -93,18 +93,20 @@ public class DataReader{
     @SuppressWarnings("deprecation")
     public String getCellData(Cell cell){
         String cellData="";
-        try{
-            switch(cell.getCellType()){
+        try {
+            if (cell != null) {
+                switch (cell.getCellType()) {
 
-                case Cell.CELL_TYPE_STRING:
-                    cellData=cell.getStringCellValue();
-                    break;
-                case Cell.CELL_TYPE_NUMERIC:
-                    cellData=(int)cell.getNumericCellValue()+"";
-                    break;
-                case Cell.CELL_TYPE_BLANK:
-                    cellData="";
-                    break;
+                    case Cell.CELL_TYPE_STRING:
+                        cellData = cell.getStringCellValue();
+                        break;
+                    case Cell.CELL_TYPE_NUMERIC:
+                        cellData = (int) cell.getNumericCellValue() + "";
+                        break;
+                    case Cell.CELL_TYPE_BLANK:
+                        cellData = "";
+                        break;
+                }
             }
         }
         catch(Exception e){
