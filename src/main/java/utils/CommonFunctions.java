@@ -37,5 +37,6 @@ public abstract class CommonFunctions {
     public abstract String getElementText(WebElement element,  int timeOutInSsec);
     public abstract void manageImplicitTimeOut(long timeOutInSsec);
     public abstract void assignDriverObject();
+    public abstract void scrolldown();
 
 }

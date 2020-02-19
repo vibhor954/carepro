@@ -1,12 +1,17 @@
 package utils;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -116,6 +121,21 @@ public class CommonFunctionsMobile extends CommonFunctions {
         } catch (Exception e) {
             logger.error("Exception occurred in manageImplicitTimeOut method: "+e.getMessage());
         }
+    }
+    @Override
+    public void scrolldown() {
+        Dimension size = driver.manage().window().getSize();
+        int startx = (int) (size.width / 2);
+        int starty = (int) (size.height / 2);
+
+        int endx = startx;
+        int endy = starty -400;
+
+        TouchAction ts = new TouchAction(driver);
+        //for(int i=0;i<=3;i++) {
+        ts.press(PointOption.point(startx,starty ))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                .moveTo(PointOption.point(endx,endy )).release().perform();
     }
 
 }

@@ -25,13 +25,10 @@ public class SpritualityTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test(priority = 1)
+    @Test()
     public void spritualitymeditation() throws InterruptedException, IOException {
         boolean isResult = false;
-        String to = "";
-        String subject = "";
-        String description = "";
-        String verification_text="";
+
         String currentMethodName = "spritualitymeditation";
         commonSpritualityPage = CommonSpritualityPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
@@ -46,76 +43,24 @@ public class SpritualityTest {
 
     }
 
-    @Test(priority = 2)
-    public void recieveemail() throws InterruptedException, IOException {
+    @Test()
+    public void spritualityvideos() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String verification_text="";
-        String currentMethodName = "recieveemail";
-        commonEmailPage = CommonEmailPage.getInstance();
+        String currentMethodName = "spritualityvideos";
+        commonSpritualityPage = CommonSpritualityPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
-        verification_text = globalVars.getFirstParam(currentMethodName);
-        //commonLoginPage.login();
-        isResult=commonEmailPage.verifymailreceived(verification_text);
-        System.out.println(isResult);
+        isResult= commonSpritualityPage.spritualityspritualvideos();
 
 
-        Utils.logStepInfo(isResult, "Recieve Email");
-        Assert.isTrue(isResult, "Step-1: User failed to Recieve email!");
+        Utils.logStepInfo(isResult, "Sprituality Videos");
+        Assert.isTrue(isResult, "Step-1: User failed to access sprituality-->videos!");
         Thread.sleep(2000);
+
     }
 
-    @Test(priority = 3)
-    public void deleteemailsfrominbox() throws InterruptedException, IOException {
-        boolean isResult = false;
 
-        String currentMethodName = "deleteemailsfrominbox";
-        commonEmailPage = CommonEmailPage.getInstance();
-        commonLoginPage=CommonLoginPage.getInstance();
-
-        isResult=commonEmailPage.deleteinboxemails();
-        System.out.println(isResult);
-
-
-        Utils.logStepInfo(isResult, "Delete Emails from Inbox");
-        Assert.isTrue(isResult, "Step-1: User failed to delete email from Inbox!");
-        Thread.sleep(2000);
-    }
-
-    @Test(priority = 4)
-    public void deleteemailsfromsent() throws InterruptedException, IOException {
-        boolean isResult = false;
-
-        String currentMethodName = "deleteemailsfrominbox";
-        commonEmailPage = CommonEmailPage.getInstance();
-        commonLoginPage=CommonLoginPage.getInstance();
-
-        isResult=commonEmailPage.deleteinboxemails();
-        System.out.println(isResult);
-
-
-        Utils.logStepInfo(isResult, "Delete Emails from Inbox");
-        Assert.isTrue(isResult, "Step-1: User failed to delete email from Inbox!");
-        Thread.sleep(2000);
-    }
-
-    @Test(priority = 5)
-    public void deleteemailsfromtrash() throws InterruptedException, IOException {
-        boolean isResult = false;
-
-        String currentMethodName = "deleteemailsfromtrash";
-        commonEmailPage = CommonEmailPage.getInstance();
-        commonLoginPage=CommonLoginPage.getInstance();
-
-        isResult=commonEmailPage.deletetrashemails();
-        System.out.println(isResult);
-
-
-        Utils.logStepInfo(isResult, "Delete Emails from Trash");
-        Assert.isTrue(isResult, "Step-1: User failed to delete email from Trash!");
-        Thread.sleep(2000);
-    }
 
     @AfterTest
     public void closeDriver(ITestContext context) {

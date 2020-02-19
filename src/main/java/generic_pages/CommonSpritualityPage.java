@@ -28,7 +28,7 @@ public abstract class CommonSpritualityPage {
     }
 
     public abstract boolean spritualitymeditation();
-    public abstract boolean spritualityspritual(String text);
+    public abstract boolean spritualityspritualvideos();
 
 }
 

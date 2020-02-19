@@ -23,6 +23,7 @@ public class SpritualityPage extends CommonSpritualityPage {
     private static SpritualityPage spritualityPage;
     private static LoginPage loginPage;
     boolean isMeditationCourse=false;
+    boolean isSpritualVideos=false;
 
 
 
@@ -31,7 +32,8 @@ public class SpritualityPage extends CommonSpritualityPage {
     AndroidElement sprituality;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Meditation Course']")
     AndroidElement meditationcourse;
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Spiritual Videos']")
+    AndroidElement spritualvideos;
 
 
 
@@ -74,8 +76,28 @@ public class SpritualityPage extends CommonSpritualityPage {
     }
 
     @Override
-    public boolean spritualityspritual(String text) {
-        return false;
+    public boolean spritualityspritualvideos() {
+        try {
+
+            commonFunctions.clickElement(sprituality, 5);
+            commonFunctions.clickElement(spritualvideos, 5);
+            Thread.sleep(2000);
+            commonFunctions.scrolldown();
+            Thread.sleep(2000);
+
+            if (driver.findElementsByXPath("//android.widget.TextView[@text='Watch now']").size()>0){
+                isSpritualVideos=true;
+            }
+            driver.navigate().back();
+            driver.navigate().back();
+            Utils.logFunctionLevelLogs(isSpritualVideos, "spritualityspritualvideos" + globalVars.getPlatform());
+        } catch (Exception e) {
+            Log.error("Exception occurred in spritualityspritualvideos method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("**********spritualityspritualvideos method ended" + globalVars.getPlatform() + "*********");
+
+        return isSpritualVideos;
     }
 
 
