@@ -48,6 +48,27 @@ public class ForgotPasswordTest {
 
     }
 
+    @Test()
+    public void forgotpasswordwithvaliddata() throws InterruptedException {
+        boolean isResult = false;
+        System.out.println("Here");
+
+
+        String registered_email = "";
+        String password = "";
+        String currentMethodName = "forgotpasswordwithvaliddata";
+        commonForgotPasswordPage = CommonForgotPasswordPage.getInstance();
+
+        registered_email = globalVars.getFirstParam(currentMethodName);
+        password = globalVars.getSecondParam(currentMethodName);
+
+
+        isResult = commonForgotPasswordPage.forgotpasswordwithvaliddata(registered_email,password);
+        Utils.logStepInfo(isResult, "Login with valid credentials");
+        Assert.isTrue(isResult, "Step-1: User failed to Login!");
+
+    }
+
 
     @AfterTest
     public void closeDriver(ITestContext context) {

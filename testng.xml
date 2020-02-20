@@ -14,6 +14,7 @@
             <class name="ForgotPasswordTest"/>
             <class name="EmailTest"/>
             <class name="SpritualityTest"/>
+            <class name="SocialTest"/>
 
         </classes>
     </test>

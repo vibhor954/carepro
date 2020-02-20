@@ -106,5 +106,14 @@ public class ForgotPasswordPage extends CommonForgotPasswordPage {
         return isPass;
     }
 
+    @Override
+    public boolean forgotpasswordwithvaliddata(String registered_email, String password) throws InterruptedException {
+        boolean isForgotPasswordSuccess = false;
+        commonFunctions.clickElement(forgotpasswordLink, 5);
+        commonFunctions.sendKey(enteryourregisteredemailInputBox,registered_email,5);
+        commonFunctions.clickElement(proceedButton,5);
+        return false;
+    }
+
 }
 

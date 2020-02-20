@@ -29,5 +29,7 @@ public abstract class CommonForgotPasswordPage {
     }
 
     public abstract boolean forgotpasswordwithinvaliddata(String message, String regsitered_email,String password,String invalid_email) throws InterruptedException;
+    public abstract boolean forgotpasswordwithvaliddata(String regsitered_email, String password) throws InterruptedException;
 }
+
 
