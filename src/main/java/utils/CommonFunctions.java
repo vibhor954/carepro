@@ -38,5 +38,7 @@ public abstract class CommonFunctions {
     public abstract void manageImplicitTimeOut(long timeOutInSsec);
     public abstract void assignDriverObject();
     public abstract void scrolldown();
+    public abstract void navigateback();
+
 
 }

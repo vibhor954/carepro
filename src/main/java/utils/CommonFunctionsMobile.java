@@ -138,4 +138,9 @@ public class CommonFunctionsMobile extends CommonFunctions {
                 .moveTo(PointOption.point(endx,endy )).release().perform();
     }
 
+    @Override
+    public void navigateback() {
+        driver.navigate().back();
+    }
+
 }
