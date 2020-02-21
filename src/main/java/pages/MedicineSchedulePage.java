@@ -28,7 +28,8 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
     boolean isVerifyAddMedicine = false;
     boolean isVerifyAddMedicineWithOtherOption = false;
     boolean isVerifySearch=false;
-    boolean isVerifyDoctorAppointment=false;
+    boolean isMedicineDeleted=false;
+    boolean isMedicineUpdated=false;
     int value;
 
 
@@ -60,6 +61,22 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
     AndroidElement addmedicineButton2;
     @AndroidFindBy(id = "com.care_pro:id/docor_name_manually")
     AndroidElement enterdoctornameInputBox;
+    @AndroidFindBy(id = "com.care_pro:id/startDateTv")
+    AndroidElement startdatesearchButton;
+    @AndroidFindBy(id = "com.care_pro:id/endDateTv")
+    AndroidElement enddatesearchButton;
+    @AndroidFindBy(id = "com.care_pro:id/date_picker_day")
+    AndroidElement datepickerstartdate;
+    @AndroidFindBy(id = "com.care_pro:id/ok")
+    AndroidElement okButton;
+    @AndroidFindBy(id = "com.care_pro:id/iv_select")
+    AndroidElement selectallcheckbox;
+    @AndroidFindBy(id = "com.care_pro:id/iv_remove")
+    AndroidElement deleteIcon;
+    @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
+    AndroidElement yesButton;
+    @AndroidFindBy(id = "com.care_pro:id/allBtn")
+    AndroidElement allsearchButton;
 
 
 
@@ -161,7 +178,50 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
         if (driver.findElementsByXPath( "//*[@text='"+text+"']").size()>0){
             isVerifySearch=true;
         }
-        System.out.println(isVerifySearch);
+        commonFunctions.clear(searchInputBox,5);
+        commonFunctions.clickElement(startdatesearchButton,5);
+        commonFunctions.clickElement(datepickerstartdate,5);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate today = LocalDate.now();
+        String day= formatter.format(today);
+        String arr[]= day.split("-");
+       int num1= Integer.parseInt(arr[2]);
+       int num2=num1-3;
+       String val=String.valueOf(num2);
+        driver.findElementByXPath("//android.view.View[@index='"+val+"']").click();
+        commonFunctions.clickElement(okButton,5);
+        commonFunctions.clickElement(enddatesearchButton,5);
+        commonFunctions.clickElement(datepickerstartdate,5);
+        commonFunctions.clickElement(okButton,5);
+        if (driver.findElementsByXPath( "//*[@text='"+text+"']").size()>0){
+            isVerifySearch=true;
+        }
+        else{
+            isVerifySearch=false;
+        }
+        commonFunctions.clear(searchInputBox,5);
+        commonFunctions.clickElement(allsearchButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath( "//*[@text='"+text+"']").size()>0){
+            isVerifySearch=true;
+        }
+        else{
+            isVerifySearch=false;
+        }
+        driver.findElementByXPath( "//*[@text='"+text+"']").click();
+        commonFunctions.clear(medicinenameInputBox,5);
+        commonFunctions.sendKey(medicinenameInputBox,text+"1",5);
+        commonFunctions.clickElement(addmedicineButton2,5);
+        if (driver.findElementsByXPath( "//*[@text='"+text+"1"+"']").size()>0){
+            isMedicineUpdated=true;
+        }
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//*[@text='Medicine deleted successfully']").size()>0 && isVerifySearch==true && isMedicineUpdated==true) {
+            isMedicineDeleted=true;
+        }
         return isVerifySearch;
     }
 

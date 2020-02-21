@@ -71,13 +71,13 @@ public class MedicineScheduleTest {
     }
 
     @Test()
-    public void verifysearch_medicine() throws InterruptedException, IOException {
+    public void verifysearch_update_medicine() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
         String medicinename="";
         String days="";
 
-        String currentMethodName = "verifysearch_medicine";
+        String currentMethodName = "verifysearch_update_medicine";
         commonLoginPage=CommonLoginPage.getInstance();
         commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
         medicinename = globalVars.getFirstParam(currentMethodName);
