@@ -30,6 +30,7 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
     boolean isVerifySearch=false;
     boolean isMedicineDeleted=false;
     boolean isMedicineUpdated=false;
+    boolean isSetReminder=false;
     int value;
 
 
@@ -77,6 +78,14 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
     AndroidElement yesButton;
     @AndroidFindBy(id = "com.care_pro:id/allBtn")
     AndroidElement allsearchButton;
+    @AndroidFindBy(id = "com.care_pro:id/tb_doc_appoint")
+    AndroidElement setreminderToggle;
+    @AndroidFindBy(id = "com.care_pro:id/iv_more")
+    private static AndroidElement moreImage;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Reminder']")
+    private static AndroidElement reminder;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='All Activities and Schedules']")
+    private static AndroidElement allactivitiesandschedulesmessage;
 
 
 
@@ -223,6 +232,40 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
             isMedicineDeleted=true;
         }
         return isVerifySearch;
+    }
+
+    @Override
+    public boolean verifysetreminder(String text, String name, String days) throws InterruptedException {
+        commonFunctions.clickElement(conciergeTab, 5);
+        commonFunctions.clickElement(medicineschedule, 5);
+        commonFunctions.clickElement(addmedicineButton, 5);
+        commonFunctions.clickElement(selectdoctor, 5);
+        Thread.sleep(2000);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+name+"']").click();
+        commonFunctions.sendKey(medicinenameInputBox, text, 5);
+        commonFunctions.sendKey(numberofdaysInputBox,days,5);
+        String startdate=commonFunctions.getElementText(medicinestartdate,5);
+        String enddate=commonFunctions.getElementText(medicineenddate,5);
+        commonFunctions.clickElement(setreminderToggle,5);
+        commonFunctions.scrolldown();
+        commonFunctions.scrolldown();
+        commonFunctions.clickElement(medicinetime,5);
+        commonFunctions.clickElement(addmedicineButton2,5);
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(moreImage,5);
+        commonFunctions.clickElement(reminder,5);
+        Thread.sleep(2000);
+
+        if (driver.findElementsByXPath("//android.widget.TextView[@text='All Activities and Schedules']").size()>0 && driver.findElementsByXPath("//*[@text='"+text+"']").size()>0){
+            isSetReminder=true;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(medicineschedule,5);
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
+
+        return isSetReminder;
     }
 
 

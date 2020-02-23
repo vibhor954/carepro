@@ -17,6 +17,7 @@
             <class name="SocialTest"/>
             <class name="DoctorAppointmentTest"/>
             <class name="MedicineScheduleTest"/>
+            <class name="VitalSignsTest"/>
 
         </classes>
     </test>

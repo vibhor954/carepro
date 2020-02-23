@@ -30,6 +30,7 @@ public abstract class CommonMedicineSchedulePage {
     public abstract boolean verifyaddmedicine(String text,String name,String days) throws InterruptedException;
     public abstract boolean verifyaddmedicinewithotheroption(String text,String name,String days) throws InterruptedException;
     public abstract boolean verifysearch_medicine(String text,String name,String days) throws InterruptedException;
+    public abstract boolean verifysetreminder(String text,String name,String days) throws InterruptedException;
 
 }
 

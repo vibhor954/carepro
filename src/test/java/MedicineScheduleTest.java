@@ -88,8 +88,33 @@ public class MedicineScheduleTest {
         isResult= commonMedicineSchedulePage.verifysearch_medicine(medicinename,doctorname,days);
 
 
-        Utils.logStepInfo(isResult, "Verify Search");
+        Utils.logStepInfo(isResult, "Verify Search and Update Medicine");
         Assert.isTrue(isResult, "Step-1: User failed to Search Medicine!");
+        Thread.sleep(2000);
+
+    }
+
+    @Test()
+    public void verifysetreminder() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String doctorname="";
+        String medicinename="";
+        String days="";
+
+        String currentMethodName = "verifysetreminder";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
+        medicinename = globalVars.getFirstParam(currentMethodName);
+        doctorname = globalVars.getSecondParam(currentMethodName);
+        days = globalVars.getThirdParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonMedicineSchedulePage.verifysetreminder(medicinename,doctorname,days);
+
+
+
+        Utils.logStepInfo(isResult, "Verify Set Reminder");
+        Assert.isTrue(isResult, "Step-1: User failed to Set Reminder!");
         Thread.sleep(2000);
 
     }
