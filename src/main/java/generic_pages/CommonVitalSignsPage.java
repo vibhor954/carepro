@@ -28,9 +28,9 @@ public abstract class CommonVitalSignsPage {
     }
 
     public abstract boolean addvitalsigns(String text,String name,String days) throws InterruptedException;
-//    public abstract boolean verifyaddmedicinewithotheroption(String text,String name,String days) throws InterruptedException;
-//    public abstract boolean verifysearch_medicine(String text,String name,String days) throws InterruptedException;
-//    public abstract boolean verifysetreminder(String text,String name,String days) throws InterruptedException;
+    public abstract boolean addvitalsignsithotheroption(String text,String name,String days) throws InterruptedException;
+    public abstract boolean updatevitalsigns(String text,String name,String days,String update) throws InterruptedException;
+    public abstract boolean verifysearch(String text,String name,String days) throws InterruptedException;
 
 }
 

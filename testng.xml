@@ -18,6 +18,7 @@
             <class name="DoctorAppointmentTest"/>
             <class name="MedicineScheduleTest"/>
             <class name="VitalSignsTest"/>
+            <class name="NoteTest"/>
 
         </classes>
     </test>
