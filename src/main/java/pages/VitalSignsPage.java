@@ -267,7 +267,7 @@ public class VitalSignsPage extends CommonVitalSignsPage {
         commonFunctions.clickElement(deleteIcon,5);
         commonFunctions.clickElement(noButton,5);
         commonFunctions.clickElement(search,5);
-        if (driver.findElementsByXPath("//android.widget.TextView[@text='"+text+"']").size()>0){
+        if (driver.findElementsByXPath("//android.widget.TextView[@text='"+name+"']").size()>0){
             isVerifyNegativeScenerios=true;
         }
         else{
