@@ -96,6 +96,7 @@ public class VitalSignsTest {
         Assert.isTrue(isResult, "Step-1: User failed to Update Vital Signs!");
         Thread.sleep(2000);
 
+
     }
 
     @Test()
@@ -119,6 +120,29 @@ public class VitalSignsTest {
 
         Utils.logStepInfo(isResult, "Verify Search Functionaity");
         Assert.isTrue(isResult, "Step-1: User failed to Search Vital Signs!");
+        Thread.sleep(2000);
+
+    }
+    @Test()
+    public void vitalsigns_negativescenerios() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String doctorname="";
+        String testtype="";
+        String units="";
+
+        String currentMethodName = "vitalsigns_negativescenerios";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonVitalSignsPage=CommonVitalSignsPage.getInstance();
+        doctorname = globalVars.getFirstParam(currentMethodName);
+        testtype = globalVars.getSecondParam(currentMethodName);
+        units = globalVars.getThirdParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonVitalSignsPage.vitalsigns_negativescenerios(doctorname,testtype,units);
+
+
+        Utils.logStepInfo(isResult, "Verify Negative Scenerios");
+        Assert.isTrue(isResult, "Step-1: User failed to validate negative scenerios!");
         Thread.sleep(2000);
 
     }

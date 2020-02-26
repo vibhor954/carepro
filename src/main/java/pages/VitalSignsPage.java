@@ -27,6 +27,7 @@ public class VitalSignsPage extends CommonVitalSignsPage {
     boolean isVitalSignsAddedWithOtherOption = false;
     boolean isVitalSignsUpdated=false;
     boolean isVerifySearch=false;
+    boolean isVerifyNegativeScenerios=false;
 
 
     @AndroidFindBy(id = "com.care_pro:id/tv_concierge")
@@ -71,7 +72,10 @@ public class VitalSignsPage extends CommonVitalSignsPage {
     AndroidElement deleteIcon;
     @AndroidFindBy(id = "com.care_pro:id/no_text_popup")
     AndroidElement yesButton;
-
+    @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
+    AndroidElement noButton;
+    @AndroidFindBy(id = "com.care_pro:id/Search_txt")
+    AndroidElement search;
 
 
     public VitalSignsPage() {
@@ -223,6 +227,59 @@ public class VitalSignsPage extends CommonVitalSignsPage {
         commonFunctions.clickElement(deleteIcon,5);
         commonFunctions.clickElement(yesButton,5);
         return isVerifySearch;
+    }
+
+    @Override
+    public boolean vitalsigns_negativescenerios(String text, String name, String units) throws InterruptedException {
+        commonFunctions.clickElement(conciergeTab, 5);
+        commonFunctions.clickElement(vitalsigns, 5);
+        commonFunctions.clickElement(addvitalsignsButton, 5);
+        commonFunctions.clickElement(submitButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select date']").size()>0 ){
+            isVerifyNegativeScenerios=true;
+        }
+        commonFunctions.clickElement(selectdate, 5);
+        commonFunctions.clickElement(okButton,5);
+        commonFunctions.clickElement(submitButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select test type']").size()>0 ){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.clickElement(selecttesttype,5);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+name+"']").click();
+        commonFunctions.clickElement(submitButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please enter unit']").size()>0 ){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.clickElement(addunit,5);
+        commonFunctions.sendKey(addunit,units,5);
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(submitButton,5);
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(noButton,5);
+        commonFunctions.clickElement(search,5);
+        if (driver.findElementsByXPath("//android.widget.TextView[@text='"+text+"']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
+
+
+        return isVerifyNegativeScenerios;
     }
 
 }

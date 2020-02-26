@@ -29,7 +29,7 @@ public abstract class CommonNotePage {
     }
 
     public abstract boolean addnote(String from,String description) throws InterruptedException;
-//    public abstract boolean addvitalsignsithotheroption(String text,String name,String days) throws InterruptedException;
+    public abstract boolean note_negativescenerios(String from,String description) throws InterruptedException;
     public abstract boolean updatenote(String from,String description,String updated) throws InterruptedException;
     public abstract boolean verifysearch(String from,String description) throws InterruptedException;
 

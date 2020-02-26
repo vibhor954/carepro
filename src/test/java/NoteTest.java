@@ -93,6 +93,27 @@ public class NoteTest {
         Thread.sleep(2000);
 
     }
+    @Test()
+    public void note_negativescenerios() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String from="";
+        String description="";
+
+        String currentMethodName = "note_negativescenerios";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonNotesPage=CommonNotePage.getInstance();
+        from = globalVars.getFirstParam(currentMethodName);
+        description = globalVars.getSecondParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonNotesPage.note_negativescenerios(from,description);
+
+
+        Utils.logStepInfo(isResult, "Verify Search");
+        Assert.isTrue(isResult, "Step-1: User failed to Search!");
+        Thread.sleep(2000);
+
+    }
 
 
 

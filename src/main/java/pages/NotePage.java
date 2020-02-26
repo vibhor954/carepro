@@ -22,6 +22,7 @@ public class NotePage extends CommonNotePage {
     boolean isNoteAdded = false;
     boolean isNoteUpdated = false;
     boolean isVerifySearch=false;
+    boolean isVerifyNoteNegativeScenerios=false;
 
 
     @AndroidFindBy(id = "com.care_pro:id/tv_concierge")
@@ -66,6 +67,8 @@ public class NotePage extends CommonNotePage {
     AndroidElement deleteIcon;
     @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
     AndroidElement yesButton;
+    @AndroidFindBy(id = "com.care_pro:id/no_text_popup")
+    AndroidElement noButton;
     @AndroidFindBy(id = "com.care_pro:id/allBtn")
     AndroidElement allsearchButton;
     @AndroidFindBy(id = "com.care_pro:id/tb_doc_appoint")
@@ -120,6 +123,45 @@ public class NotePage extends CommonNotePage {
 
         return isNoteAdded;
 
+    }
+
+    @Override
+    public boolean note_negativescenerios(String from, String description) throws InterruptedException {
+        commonFunctions.clickElement(conciergeTab, 5);
+        commonFunctions.clickElement(note, 5);
+        commonFunctions.clickElement(addnote,5);
+        commonFunctions.clickElement(addnote2,5);
+        commonFunctions.clickElement(selectfromuser, 5);
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]/android.widget.TextView\n").click();
+        //commonFunctions.clickElement(fromuser,5);
+        String from_text=commonFunctions.getElementText(fromText,5);
+        commonFunctions.clickElement(selecttouser,5);
+        Thread.sleep(1000);
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[3]/android.widget.TextView\n").click();
+        String to_text=commonFunctions.getElementText(to,5);
+        commonFunctions.sendKey(descriptioninputBox,description,5);
+        commonFunctions.clickElement(addnote2,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select note']").size()>0 ){
+            isVerifyNoteNegativeScenerios=true;
+        }
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(noButton,5);
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select note']").size()>0 ){
+            isVerifyNoteNegativeScenerios=true;
+        }
+        else{
+            isVerifyNoteNegativeScenerios=false;
+        }
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
+        return isVerifyNoteNegativeScenerios;
     }
 
 
