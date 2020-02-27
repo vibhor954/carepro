@@ -16,10 +16,10 @@
             <class name="SpritualityTest"/>
             <class name="SocialTest"/>
             <class name="DoctorAppointmentTest"/>
-
             <class name="MedicineScheduleTest"/>
             <class name="VitalSignsTest"/>
             <class name="NoteTest"/>
+            <class name="PhotoTest"/>
 
         </classes>
     </test>
