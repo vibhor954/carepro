@@ -266,6 +266,51 @@ public class PhotoPage extends CommonPhotoPage {
         return isFavouritePhoto;
     }
 
+    @Override
+    public boolean negativescenerios(String folder) throws InterruptedException {
+        isVerifyNoteNegativeScenerios=false;
+        commonFunctions.clickElement(entertainmentTab, 5);
+        commonFunctions.clickElement(photo, 5);
+        commonFunctions.clickElement(photogallery,5);
+        commonFunctions.clickElement(addphotoButton,5);
+        commonFunctions.clickElement(submitButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please choose a photo']").size()>0){
+            isVerifyNoteNegativeScenerios=true;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(photogallery,5);
+        commonFunctions.clickElement(addphotoButton,5);
+        Thread.sleep(1000);
+        commonFunctions.clickElement(addIcon, 5);
+        commonFunctions.clickElement(selectphotofromcamera,5);
+        commonFunctions.navigateback();
+        if (driver.findElementsById("com.care_pro:id/iv_add_icon").size()>0){
+            isVerifyNoteNegativeScenerios=true;
+        }
+        else{
+            isVerifyNoteNegativeScenerios=false;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(addIcon, 5);
+        commonFunctions.clickElement(selectphotofromgallery,5);
+        commonFunctions.clickElement(photos,5);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+folder+"']").click();
+        commonFunctions.clickElement(photoselect,5);
+        commonFunctions.clickElement(noButton,5);
+        commonFunctions.clickElement(submitButton,5);
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(photogallery,5);
+        commonFunctions.clickElement(deleteicon,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select photo']").size()>0){
+            isVerifyNoteNegativeScenerios=true;
+        }
+
+        return isVerifyNoteNegativeScenerios;
+    }
+
 
 }
 

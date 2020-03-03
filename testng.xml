@@ -20,6 +20,7 @@
             <class name="VitalSignsTest"/>
             <class name="NoteTest"/>
             <class name="PhotoTest"/>
+            <class name="TestReportTest"/>
 
         </classes>
     </test>

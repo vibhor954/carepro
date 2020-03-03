@@ -33,6 +33,7 @@ public abstract class CommonPhotoPage {
     public abstract boolean addphotofromcamera_full() throws InterruptedException;
     public abstract boolean slidephoto() throws InterruptedException;
     public abstract boolean choosefavoritephoto(String folder) throws InterruptedException;
+    public abstract boolean negativescenerios(String folder) throws InterruptedException;
 
 
 }

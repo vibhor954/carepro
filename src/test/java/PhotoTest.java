@@ -142,6 +142,26 @@ public class PhotoTest {
 
     }
 
+    @Test()
+    public void negativescenerios() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String folder="";
+
+        String currentMethodName = "negativescenerios";
+        folder = globalVars.getFirstParam(currentMethodName);
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonPhotoPage=CommonPhotoPage.getInstance();
+        commonLoginPage.login();
+        Thread.sleep(1000);
+        isResult= commonPhotoPage.negativescenerios(folder);
+
+
+        Utils.logStepInfo(isResult, "Photo Test Case Negative Scenerios");
+        Assert.isTrue(isResult, "Step-1: User failed to verify Negative Scenerios!");
+        Thread.sleep(2000);
+
+    }
+
     @AfterTest
     public void closeDriver(ITestContext context) {
         TestBase.tearDownSuite(context);
