@@ -9,7 +9,6 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonFunctions;
 
-//import io.appium.java_client.android.AndroidKeyCode;
 
 public class TestReportPage extends CommonTestReportPage {
     //private AndroidDriver<AndroidElement> driver;
@@ -60,7 +59,9 @@ public class TestReportPage extends CommonTestReportPage {
     AndroidElement selectcheckbox;
     @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
     AndroidElement yespopupButton;
-    @AndroidFindBy(id = "com.care_pro:id/tv_update_test_report")
+    @AndroidFindBy(id = "com.care_pro:id/no_text_popup")
+    AndroidElement yespopupButton2;
+    @AndroidFindBy(id = "com.care_pro:id/rl_update_test_report")
     private static AndroidElement updatetestreportButton;
     @AndroidFindBy(id = "com.care_pro:id/iv_remove")
     private static AndroidElement deleteicon;
@@ -160,8 +161,10 @@ public class TestReportPage extends CommonTestReportPage {
     }
 
     @Override
-    public boolean updatetestreport(String reportname,String doctor,String test,String updated,String description) throws InterruptedException {
+    public boolean updatetestreport(String reportname,String doctor,String test,String updated,String description,String sendtouser) throws InterruptedException {
         boolean isReportUpdated=false;
+        boolean isReportSentToUser=false;
+
         commonFunctions.clickElement(conciergeTab, 5);
         commonFunctions.clickElement(testreport, 5);
         commonFunctions.clickElement(uploadnewtestreportButton,5);
@@ -179,21 +182,115 @@ public class TestReportPage extends CommonTestReportPage {
         Thread.sleep(1000);
 
         driver.findElementByXPath("//android.widget.TextView[@text='"+reportname+"']").click();
-        commonFunctions.clear(descriptioninputBox2,5);
-        commonFunctions.sendKey(descriptioninputBox2,updated,5);
-        commonFunctions.clear(updatetestreportButton,5);
+        commonFunctions.clickElement(updatetestreportButton,5);
+        commonFunctions.clear(descriptioninputBox,5);
+        commonFunctions.sendKey(descriptioninputBox,updated,5);
+        commonFunctions.clickElement(sentButton,5);
         if (driver.findElementsByXPath("//android.widget.Toast[@text='Update test report successfully']").size()>0 && driver.findElementsByXPath("//android.widget.TextView[@text='"+updated+"']").size()>0){
             isReportUpdated=true;
+        }
+
+        commonFunctions.clickElement(sendtouserButton,5);
+        commonFunctions.clickElement(selectdoctor,10);
+        Thread.sleep(1000);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+sendtouser+"']").click();
+        commonFunctions.clickElement(sendtouserButton,5);
+        Thread.sleep(3000);
+
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Report successfully sent']").size()>0){
+            isReportSentToUser=true;
+        }
+        if (isReportUpdated && isReportSentToUser){
+            isReportUpdated=true;
+        }
+        else{
+            isReportUpdated=false;
         }
 
         commonFunctions.clickElement(selectcheckbox,5);
         commonFunctions.clickElement(deleteicon,5);
         commonFunctions.clickElement(yespopupButton,5);
 
+
         return isReportUpdated;
     }
 
+    @Override
+    public boolean negativescenerios(String reportname, String doctor, String test, String folder, String description) throws InterruptedException {
+        boolean isVerifyNegativeScenerios=false;
 
+        commonFunctions.clickElement(conciergeTab, 5);
+        commonFunctions.clickElement(testreport, 5);
+        commonFunctions.clickElement(uploadnewtestreportButton,5);
+        commonFunctions.clickElement(sentButton,5);
+        commonFunctions.sendKey(entertestreportname,reportname,5);
+        commonFunctions.clickElement(sentButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select doctor']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        commonFunctions.clickElement(selectdoctor, 5);
+        Thread.sleep(1000);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+doctor+"']").click();
+        commonFunctions.clickElement(sentButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select test type']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.clickElement(selecttesttype,5);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+test+"']").click();
+        commonFunctions.clickElement(sentButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select test report image']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.clickElement(image,5);
+        commonFunctions.clickElement(gallery,5);
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.GridView/android.widget.FrameLayout[1]/android.widget.ImageView[3]").click();
+        commonFunctions.clickElement(sentButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Write description here about your test report']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.sendKey(descriptioninputBox,description,5);
+        Thread.sleep(1000);
+        commonFunctions.clickElement(sentButton,5);
+        Thread.sleep(5000);
+        commonFunctions.clickElement(deleteicon,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select test report']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        Thread.sleep(1000);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+reportname+"']").click();
+        commonFunctions.clickElement(sendtouserButton,5);
+        commonFunctions.clickElement(sendtouserButton,5);
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Please select user']").size()>0){
+            isVerifyNegativeScenerios=true;
+        }
+        else{
+            isVerifyNegativeScenerios=false;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(selectcheckbox,10);
+        commonFunctions.clickElement(deleteicon,5);
+        commonFunctions.clickElement(yespopupButton2,5);
+        return isVerifyNegativeScenerios;
+    }
 
 
 }

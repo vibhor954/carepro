@@ -88,6 +88,7 @@ public class TestReportTest {
         String test="";
         String updated="";
         String description="";
+        String sendtouser="";
 
         String currentMethodName = "updatetestreport";
         commonLoginPage=CommonLoginPage.getInstance();
@@ -97,13 +98,42 @@ public class TestReportTest {
         test = globalVars.getThirdParam(currentMethodName);
         updated = globalVars.getFourthParam(currentMethodName);
         description = globalVars.getFifthParam(currentMethodName);
+        sendtouser = globalVars.getSixthParam(currentMethodName);
 
         commonLoginPage.login();
-        isResult= commonTestReportPage.updatetestreport(reportname,doctor,test,updated,description);
+        isResult= commonTestReportPage.updatetestreport(reportname,doctor,test,updated,description, sendtouser);
 
 
         Utils.logStepInfo(isResult, "Verify Update Test Report");
         Assert.isTrue(isResult, "Step-1: User failed to Update Test Report!");
+        Thread.sleep(2000);
+
+    }
+
+    @Test()
+    public void negativescenerios_testreport() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String doctor="";
+        String reportname="";
+        String test="";
+        String file="";
+        String description="";
+
+        String currentMethodName = "negativescenerios_testreport";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonTestReportPage=CommonTestReportPage.getInstance();
+        reportname = globalVars.getFirstParam(currentMethodName);
+        doctor = globalVars.getSecondParam(currentMethodName);
+        test = globalVars.getThirdParam(currentMethodName);
+        file = globalVars.getFourthParam(currentMethodName);
+        description = globalVars.getFifthParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonTestReportPage.negativescenerios(reportname,doctor,test,file,description);
+
+
+        Utils.logStepInfo(isResult, "Verify Test Report Negative Scenerios ");
+        Assert.isTrue(isResult, "Step-1: User failed to Verify Negative Test Report Scenerios!");
         Thread.sleep(2000);
 
     }

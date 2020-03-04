@@ -29,7 +29,8 @@ public abstract class CommonTestReportPage {
 
     public abstract boolean uploadtestreport(String reportname,String doctor,String test,String folder,String description) throws InterruptedException;
     public abstract boolean uploadtestreportwithotheroption(String reportname,String doctor,String test,String folder,String description) throws InterruptedException;
-    public abstract boolean updatetestreport(String reportname,String doctor,String test,String folder,String description) throws InterruptedException;
+    public abstract boolean updatetestreport(String reportname,String doctor,String test,String folder,String description,String sendtouser) throws InterruptedException;
+    public abstract boolean negativescenerios(String reportname,String doctor,String test,String folder,String description) throws InterruptedException;
 
 }
 
