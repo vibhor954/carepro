@@ -21,6 +21,7 @@
             <class name="NoteTest"/>
             <class name="PhotoTest"/>
             <class name="TestReportTest"/>
+            <class name="ArticlesTest"/>
 
         </classes>
     </test>
