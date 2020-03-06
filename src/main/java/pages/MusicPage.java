@@ -76,6 +76,10 @@ public class MusicPage extends CommonMusicPage {
     private static AndroidElement listitem;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='See all']")
     private static AndroidElement seeall;
+    @AndroidFindBy(id = "com.care_pro:id/iv_player_icon")
+    private static AndroidElement playicon;
+    @AndroidFindBy(id = "com.care_pro:id/lv_play_musicplay")
+    private static AndroidElement pauseicon;
 
 
 
@@ -184,7 +188,17 @@ public class MusicPage extends CommonMusicPage {
         return isUpdateMusic;
     }
 
+    @Override
+    public boolean play_pause() {
+        boolean isPlayPause=false;
+        commonFunctions.clickElement(entertainmentTab, 5);
+        commonFunctions.clickElement(music, 5);
+        commonFunctions.clickElement(playicon,5);
+        commonFunctions.clickElement(pauseicon,5);
+        isPlayPause= commonFunctions.clickElement(pauseicon,5);
 
+        return isPlayPause;
+    }
 
 
 }

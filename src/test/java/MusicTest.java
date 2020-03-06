@@ -50,6 +50,52 @@ public class MusicTest {
 
     }
 
+    @Test()
+    public void updatemusic() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String title="";
+        String description="";
+        String artist="";
+        String type="";
+        String update="";
+
+        String currentMethodName = "updatemusic";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonMusicPage=CommonMusicPage.getInstance();
+        title = globalVars.getFirstParam(currentMethodName);
+        description = globalVars.getSecondParam(currentMethodName);
+        type = globalVars.getThirdParam(currentMethodName);
+        artist = globalVars.getFourthParam(currentMethodName);
+        update = globalVars.getFifthParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonMusicPage.updatemusic(title,description,type,artist,update);
+
+
+        Utils.logStepInfo(isResult, "Update Music");
+        Assert.isTrue(isResult, "Step-1: User failed to Update Music!");
+        Thread.sleep(2000);
+
+    }
+
+    @Test()
+    public void play_pause() throws InterruptedException, IOException {
+        boolean isResult = false;
+
+        String currentMethodName = "play_pause";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonMusicPage=CommonMusicPage.getInstance();
+
+        commonLoginPage.login();
+        isResult= commonMusicPage.play_pause();
+
+
+        Utils.logStepInfo(isResult, "Play n Pause Music");
+        Assert.isTrue(isResult, "Step-1: User failed to Play n Pause Music!");
+        Thread.sleep(2000);
+
+    }
+
 
 
 
