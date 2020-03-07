@@ -39,6 +39,7 @@ public abstract class CommonFunctions {
     public abstract void assignDriverObject();
     public abstract void scrolldown();
     public abstract void navigateback();
+    public abstract void waitforelementinvisible(WebElement element,long timeOutInSsec);
 
 
 }

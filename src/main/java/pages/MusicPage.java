@@ -6,6 +6,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import logger.Log;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonFunctions;
@@ -80,6 +81,11 @@ public class MusicPage extends CommonMusicPage {
     private static AndroidElement playicon;
     @AndroidFindBy(id = "com.care_pro:id/lv_play_musicplay")
     private static AndroidElement pauseicon;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Info']")
+    private static AndroidElement getinfo;
+    @AndroidFindBy(id = "com.care_pro:id/iv_download_musiclist_item")
+    private static AndroidElement downloadicon;
+
 
 
 
@@ -198,6 +204,122 @@ public class MusicPage extends CommonMusicPage {
         isPlayPause= commonFunctions.clickElement(pauseicon,5);
 
         return isPlayPause;
+    }
+
+    @Override
+    public boolean selectmusicasfavorite_unfavorite(String title, String description, String type, String artist) throws InterruptedException {
+
+        boolean isfavorite=false;
+        boolean isunfavorite=false;
+        try {
+        commonFunctions.clickElement(entertainmentTab, 5);
+        commonFunctions.clickElement(music, 5);
+        commonFunctions.clickElement(addicon,5);
+        commonFunctions.sendKey(musictitleInputBox,title,5);
+        commonFunctions.sendKey(musicdescriptionInputBox,description,5);
+        commonFunctions.clickElement(musictype,5);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+type+"']").click();
+        commonFunctions.sendKey(artistnameInputBox,artist,5);
+        commonFunctions.clickElement(musicfile,5);
+        commonFunctions.clickElement(fileselect,5);
+        commonFunctions.clickElement(musicimageicon,5);
+        commonFunctions.clickElement(selectphotofromgallery,5);
+        commonFunctions.clickElement(photos,5);
+        commonFunctions.clickElement(photo,5);
+        commonFunctions.clickElement(photoselect,5);
+        //Thread.sleep(1000);
+        commonFunctions.clickElement(fullsizeButton,5);
+        // Thread.sleep(2000);
+        commonFunctions.clickElement(submitButton,5);
+
+        Thread.sleep(10000);
+        commonFunctions.scrolldown();
+        commonFunctions.scrolldown();
+        commonFunctions.scrolldown();
+        System.out.println(driver.findElementsById("com.care_pro:id/iv_musicFav").size());
+       List<WebElement> el= driver.findElementsById("com.care_pro:id/iv_musicFav");
+       el.get(2).click();
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Favorite successfully']").size()>0 && driver.findElementsByXPath("//android.widget.TextView[@text='Favourite']").size()>0){
+            isfavorite=true;
+        }
+        el= driver.findElementsById("com.care_pro:id/iv_musicFav");
+        el.get(2).click();
+        Thread.sleep(1000);
+        if (driver.findElementsByXPath("//android.widget.Toast[@text='Unfavorite successfully']").size()>0){
+            isunfavorite=true;
+        }
+        if(isfavorite && isunfavorite){
+            isfavorite=true;
+        }
+        else {
+            isfavorite=false;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(music,5);
+        List<WebElement> element= driver.findElementsByXPath("//*[@text='See all']");
+        element.get(1).click();
+        commonFunctions.clickElement(listitem,5);
+        commonFunctions.clickElement(delete,5);
+        commonFunctions.clickElement(yespopupButton,5);
+        } catch (Exception e) {
+            Log.error("Exception occurred in selectmusicasfavorite_unfavorite method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("**********selectmusicasfavorite_unfavorite method ended" + globalVars.getPlatform() + "*********");
+        return isfavorite;
+    }
+
+    @Override
+    public boolean getinfo_download(String title, String description, String type, String artist) throws InterruptedException {
+        boolean isVerifyGetInfo=false;
+        boolean isDownload=false;
+        try{
+        commonFunctions.clickElement(entertainmentTab, 5);
+        commonFunctions.clickElement(music, 5);
+        commonFunctions.clickElement(addicon,5);
+        commonFunctions.sendKey(musictitleInputBox,title,5);
+        commonFunctions.sendKey(musicdescriptionInputBox,description,5);
+        commonFunctions.clickElement(musictype,5);
+        Thread.sleep(1000);
+        driver.findElementByXPath("//android.widget.TextView[@text='"+type+"']").click();
+        commonFunctions.sendKey(artistnameInputBox,artist,5);
+        commonFunctions.clickElement(musicfile,5);
+        commonFunctions.clickElement(fileselect,5);
+        commonFunctions.clickElement(musicimageicon,5);
+        commonFunctions.clickElement(selectphotofromgallery,5);
+        commonFunctions.clickElement(photos,5);
+        commonFunctions.clickElement(photo,5);
+        commonFunctions.clickElement(photoselect,5);
+        commonFunctions.clickElement(fullsizeButton,5);
+        commonFunctions.clickElement(submitButton,5);
+        Thread.sleep(80000);
+        List<WebElement> el= driver.findElementsByXPath("//*[@text='See all']");
+        el.get(1).click();
+        commonFunctions.clickElement(listitem,5);
+        commonFunctions.clickElement(delete,5);
+        commonFunctions.clickElement(yespopupButton,5);
+        commonFunctions.clickElement(listitem,5);
+        commonFunctions.clickElement(getinfo,5);
+        Thread.sleep(1000);
+        if (driver.findElementsById("com.care_pro:id/tv_startDuration_musicdetail").size()>0 && driver.findElementsById("com.care_pro:id/tv_totalDuration_musicdetail").size()>0 &&  driver.findElementsById("com.care_pro:id/iv_play_musicdetail").size()>0){
+            isVerifyGetInfo=true;
+        }
+        commonFunctions.navigateback();
+        commonFunctions.clickElement(downloadicon,5);
+            if (driver.findElementsById("android:id/progress").size()>0){
+                isDownload=true;
+            }
+            if (isVerifyGetInfo && isDownload){
+                isVerifyGetInfo=true;
+            }
+        } catch (Exception e) {
+            Log.error("Exception occurred in getinfo_download method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("********** getinfo_download method ended " + globalVars.getPlatform() + "*********");
+
+        return isVerifyGetInfo;
     }
 
 

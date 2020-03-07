@@ -143,4 +143,22 @@ public class CommonFunctionsMobile extends CommonFunctions {
         driver.navigate().back();
     }
 
+    @Override
+    public void waitforelementinvisible(WebElement element,long timeOutInSsec) {
+        try{
+
+            manageImplicitTimeOut(0);
+            WebDriverWait wait = null;
+            wait=new WebDriverWait(driver, timeOutInSsec);
+            wait.until(ExpectedConditions.invisibilityOf(element));
+        }catch(Exception e){
+            logger.error("Exception occurred in waitforelementinvisible method: "+e.getMessage());
+            e.printStackTrace();
+            manageImplicitTimeOut(globalVars.getImplicitWait());
+
+        }
+        manageImplicitTimeOut(globalVars.getImplicitWait());
+
+    }
+
 }

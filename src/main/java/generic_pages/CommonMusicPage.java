@@ -30,5 +30,7 @@ public abstract class CommonMusicPage {
     public abstract boolean addmusic(String title,String description,String type,String artist) throws InterruptedException;
     public abstract boolean updatemusic(String title,String description,String type,String artist,String updated) throws InterruptedException;
     public abstract boolean play_pause();
+    public abstract boolean selectmusicasfavorite_unfavorite(String title,String description,String type,String artist) throws InterruptedException;
+    public abstract boolean getinfo_download(String title,String description,String type,String artist) throws InterruptedException;
 }
 

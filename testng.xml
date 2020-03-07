@@ -23,6 +23,7 @@
             <class name="TestReportTest"/>
             <class name="ArticlesTest"/>
             <class name="MusicTest"/>
+            <class name="CameraTest"/>
 
         </classes>
     </test>

@@ -96,6 +96,55 @@ public class MusicTest {
 
     }
 
+    @Test()
+    public void selectmusicasfavorite_unfavorite() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String title="";
+        String description="";
+        String artist="";
+        String type="";
+
+        String currentMethodName = "selectmusicasfavorite_unfavorite";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonMusicPage=CommonMusicPage.getInstance();
+        title = globalVars.getFirstParam(currentMethodName);
+        description = globalVars.getSecondParam(currentMethodName);
+        type = globalVars.getThirdParam(currentMethodName);
+        artist = globalVars.getFourthParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonMusicPage.selectmusicasfavorite_unfavorite(title,description,type,artist);
+
+
+        Utils.logStepInfo(isResult, "Select Music as Favorite and Un favorite");
+        Assert.isTrue(isResult, "Step-1: User failed to Select Music as Favorite and Un favorite!");
+    }
+
+    @Test()
+    public void getinfo_download() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String title="";
+        String description="";
+        String artist="";
+        String type="";
+
+        String currentMethodName = "getinfo_download";
+        commonLoginPage=CommonLoginPage.getInstance();
+        commonMusicPage=CommonMusicPage.getInstance();
+        title = globalVars.getFirstParam(currentMethodName);
+        description = globalVars.getSecondParam(currentMethodName);
+        type = globalVars.getThirdParam(currentMethodName);
+        artist = globalVars.getFourthParam(currentMethodName);
+
+        commonLoginPage.login();
+        isResult= commonMusicPage.getinfo_download(title,description,type,artist);
+
+
+        Utils.logStepInfo(isResult, "Get Info");
+        Assert.isTrue(isResult, "Step-1: User failed to Verify Get Info!");
+
+    }
+
 
 
 
