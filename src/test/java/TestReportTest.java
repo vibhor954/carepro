@@ -4,9 +4,7 @@ import generic_pages.CommonPhotoPage;
 import generic_pages.CommonTestReportPage;
 import org.springframework.util.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.GlobalVars;
 import utils.Utils;
 
@@ -19,12 +17,14 @@ public class TestReportTest {
     CommonTestReportPage commonTestReportPage;
     GlobalVars globalVars;
 
-    @BeforeTest
+
+   // @BeforeMethod
+   @BeforeTest
     public void initialization() {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void uploadtestreport() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctor="";
@@ -52,7 +52,7 @@ public class TestReportTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void uploadtestreportwithotheroption() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctor="";
@@ -80,7 +80,7 @@ public class TestReportTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void updatetestreport() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctor="";
@@ -110,7 +110,7 @@ public class TestReportTest {
 
     }
 
-    @Test()
+    @Test(priority = 4)
     public void negativescenerios_testreport() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctor="";
@@ -128,7 +128,7 @@ public class TestReportTest {
         file = globalVars.getFourthParam(currentMethodName);
         description = globalVars.getFifthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonTestReportPage.negativescenerios(reportname,doctor,test,file,description);
 
 
@@ -141,6 +141,8 @@ public class TestReportTest {
 
 
 
+
+   // @AfterMethod
     @AfterTest
     public void closeDriver(ITestContext context) {
         TestBase.tearDownSuite(context);

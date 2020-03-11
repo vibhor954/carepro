@@ -117,15 +117,18 @@ public class ArticlesPage extends CommonArticlesPage {
         commonFunctions.clickElement(fullsizeButton,5);
         commonFunctions.clickElement(submitButton,5);
         commonFunctions.clickElement(health,5);
-        if (driver.findElementsByXPath("//android.widget.TextView[@text='"+title+"']").size()==2){
+        if (driver.findElementsByXPath("//android.widget.TextView[@text='"+title+"']").size()>0){
             isAddArticle=true;
         }
+        driver.findElementByXPath("//android.widget.TextView[@text='"+title+"']").click();
+        commonFunctions.clickElement(articledetails,5);
+        commonFunctions.clickElement(delete,5);
+        commonFunctions.clickElement(yespopupButton,5);
+        Thread.sleep(2000);
+        //commonFunctions.navigateback();
+        //commonFunctions.navigateback();
 
 
-
-//        commonFunctions.clickElement(selectcheckbox,5);
-//        commonFunctions.clickElement(deleteicon,5);
-//        commonFunctions.clickElement(yespopupButton,5);
 
         return isAddArticle;
     }
@@ -133,8 +136,9 @@ public class ArticlesPage extends CommonArticlesPage {
     @Override
     public boolean updatearticle(String title, String description, String artist, String update) throws InterruptedException {
         boolean isUpdateArticle=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(articles, 5);
+        //commonFunctions.clickElement(entertainmentTab, 5);
+        //commonFunctions.clickElement(articles, 5);
+        commonFunctions.navigateback();
         commonFunctions.clickElement(addicon,5);
         commonFunctions.sendKey(articletitleInputBox,title,5);
         commonFunctions.sendKey(articledescriptionInputBox,description,5);

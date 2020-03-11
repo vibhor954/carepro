@@ -56,6 +56,7 @@ public class AndroidBase extends TestBase{
             capabilities.setCapability(Constants.APP_ACTIVITY, globalVars.getAppActivity());
             capabilities.setCapability(Constants.APP_WAIT_PACKAGE, globalVars.getAppWaitPackage());
             capabilities.setCapability("noReset",false);
+            capabilities.setCapability("skipServerInstallation",true);
           //  capabilities.setCapability(MobileCapabilityType.APP,);
             
            // capabilities.setCapability("autoGrantPermissions", true);
@@ -74,8 +75,8 @@ public class AndroidBase extends TestBase{
 
     @Override
     public void closeDriver(){
-        //if(driver!=null)
-          //  driver.quit();
+        if(driver!=null)
+            driver.quit();
 
     }
 }

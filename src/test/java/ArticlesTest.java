@@ -64,7 +64,7 @@ public class ArticlesTest {
         artist = globalVars.getThirdParam(currentMethodName);
         updated = globalVars.getFourthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonArticlesPage.updatearticle(title,description,artist,updated);
 
 
