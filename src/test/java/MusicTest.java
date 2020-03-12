@@ -24,7 +24,7 @@ public class MusicTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void addmusic() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -50,7 +50,7 @@ public class MusicTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void updatemusic() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -68,7 +68,7 @@ public class MusicTest {
         artist = globalVars.getFourthParam(currentMethodName);
         update = globalVars.getFifthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMusicPage.updatemusic(title,description,type,artist,update);
 
 
@@ -78,7 +78,7 @@ public class MusicTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void play_pause() throws InterruptedException, IOException {
         boolean isResult = false;
 
@@ -86,7 +86,7 @@ public class MusicTest {
         commonLoginPage=CommonLoginPage.getInstance();
         commonMusicPage=CommonMusicPage.getInstance();
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMusicPage.play_pause();
 
 
@@ -96,7 +96,7 @@ public class MusicTest {
 
     }
 
-    @Test()
+    @Test(priority = 4)
     public void selectmusicasfavorite_unfavorite() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -112,7 +112,7 @@ public class MusicTest {
         type = globalVars.getThirdParam(currentMethodName);
         artist = globalVars.getFourthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMusicPage.selectmusicasfavorite_unfavorite(title,description,type,artist);
 
 
@@ -120,7 +120,7 @@ public class MusicTest {
         Assert.isTrue(isResult, "Step-1: User failed to Select Music as Favorite and Un favorite!");
     }
 
-    @Test()
+    @Test(priority = 5)
     public void getinfo_download() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -136,7 +136,7 @@ public class MusicTest {
         type = globalVars.getThirdParam(currentMethodName);
         artist = globalVars.getFourthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMusicPage.getinfo_download(title,description,type,artist);
 
 

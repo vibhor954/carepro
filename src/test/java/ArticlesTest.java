@@ -24,7 +24,7 @@ public class ArticlesTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void addarticle() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -48,7 +48,7 @@ public class ArticlesTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void updatearticle() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -74,7 +74,7 @@ public class ArticlesTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void selectarticleasfavorite_unfavorite() throws InterruptedException, IOException {
         boolean isResult = false;
         String title="";
@@ -88,7 +88,7 @@ public class ArticlesTest {
         description = globalVars.getSecondParam(currentMethodName);
         artist = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+       // commonLoginPage.login();
         isResult= commonArticlesPage.selectarticleasfavorite(title,description,artist);
 
 

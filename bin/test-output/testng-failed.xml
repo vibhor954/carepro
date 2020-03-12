@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [CareProTestSuite]">
+  <listeners>
+    <listener class-name="listener.AnnotationTransformer"/>
+    <listener class-name="listener.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="CareProTestCases(failed)">
+    <classes>
+      <class name="TestReportTest">
+        <methods>
+          <include name="uploadtestreportwithotheroption"/>
+          <include name="initialization"/>
+          <include name="closeDriver"/>
+        </methods>
+      </class> <!-- TestReportTest -->
+    </classes>
+  </test> <!-- CareProTestCases(failed) -->
+</suite> <!-- Failed suite [CareProTestSuite] -->

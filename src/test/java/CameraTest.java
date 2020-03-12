@@ -62,10 +62,6 @@ public class CameraTest {
 
     }
 
-
-
-
-
     @AfterTest
     public void closeDriver(ITestContext context) {
         TestBase.tearDownSuite(context);

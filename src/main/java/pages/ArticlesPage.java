@@ -180,8 +180,9 @@ public class ArticlesPage extends CommonArticlesPage {
     @Override
     public boolean selectarticleasfavorite(String title,String description,String artist) throws InterruptedException {
         boolean isFavoriteArticle=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(articles, 5);
+        commonFunctions.navigateback();
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(articles, 5);
         commonFunctions.clickElement(addicon,5);
         commonFunctions.sendKey(articletitleInputBox,title,5);
         commonFunctions.sendKey(articledescriptionInputBox,description,5);
@@ -211,10 +212,15 @@ public class ArticlesPage extends CommonArticlesPage {
             isFavoriteArticle=true;
         }
         commonFunctions.navigateback();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         if (driver.findElementsByXPath("//android.widget.TextView[@text='Favourite']").size()>0 && driver.findElementsByXPath("//android.widget.TextView[@text='"+title+"']").size()==3){
             isFavoriteArticle=true;
         }

@@ -25,7 +25,7 @@ public class PhotoTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void addphotofromgallery_cropimage() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -45,7 +45,7 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addphotofromgallery_fullimage() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -55,7 +55,7 @@ public class PhotoTest {
         commonPhotoPage=CommonPhotoPage.getInstance();
         folder = globalVars.getFirstParam(currentMethodName);
 
-        commonLoginPage.login();
+       // commonLoginPage.login();
         isResult= commonPhotoPage.addphotofromgallery_full(folder);
 
 
@@ -65,7 +65,7 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void addphotofromcamera_crop() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -75,7 +75,7 @@ public class PhotoTest {
         commonPhotoPage=CommonPhotoPage.getInstance();
         folder = globalVars.getFirstParam(currentMethodName);
 
-        commonLoginPage.login();
+       // commonLoginPage.login();
         isResult= commonPhotoPage.addphotofromcamera_crop();
 
 
@@ -85,7 +85,7 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 4)
     public void addphotofromcamera_full() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -95,7 +95,7 @@ public class PhotoTest {
         commonPhotoPage=CommonPhotoPage.getInstance();
         folder = globalVars.getFirstParam(currentMethodName);
 
-        commonLoginPage.login();
+       // commonLoginPage.login();
         isResult= commonPhotoPage.addphotofromcamera_full();
 
 
@@ -105,14 +105,14 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 5)
     public void verifyslidephoto() throws InterruptedException, IOException {
         boolean isResult = false;
 
         String currentMethodName = "verifyslidephoto";
         commonLoginPage=CommonLoginPage.getInstance();
         commonPhotoPage=CommonPhotoPage.getInstance();
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonPhotoPage.slidephoto();
 
 
@@ -122,7 +122,7 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 6)
     public void choosefavoritephoto() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -131,7 +131,7 @@ public class PhotoTest {
         folder = globalVars.getFirstParam(currentMethodName);
         commonLoginPage=CommonLoginPage.getInstance();
         commonPhotoPage=CommonPhotoPage.getInstance();
-        commonLoginPage.login();
+       // commonLoginPage.login();
         Thread.sleep(1000);
         isResult= commonPhotoPage.choosefavoritephoto(folder);
 
@@ -142,7 +142,7 @@ public class PhotoTest {
 
     }
 
-    @Test()
+    @Test(priority = 7)
     public void negativescenerios() throws InterruptedException, IOException {
         boolean isResult = false;
         String folder="";
@@ -151,7 +151,7 @@ public class PhotoTest {
         folder = globalVars.getFirstParam(currentMethodName);
         commonLoginPage=CommonLoginPage.getInstance();
         commonPhotoPage=CommonPhotoPage.getInstance();
-        commonLoginPage.login();
+        //commonLoginPage.login();
         Thread.sleep(1000);
         isResult= commonPhotoPage.negativescenerios(folder);
 

@@ -25,7 +25,7 @@ public class NoteTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void addnote() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
@@ -47,7 +47,7 @@ public class NoteTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void updatenote() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
@@ -61,7 +61,7 @@ public class NoteTest {
         description = globalVars.getSecondParam(currentMethodName);
         updated = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonNotesPage.updatenote(from,description,updated);
 
 
@@ -71,7 +71,7 @@ public class NoteTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void verifysearch_note() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
@@ -84,7 +84,7 @@ public class NoteTest {
         from = globalVars.getFirstParam(currentMethodName);
         description = globalVars.getSecondParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonNotesPage.verifysearch(from,description);
 
 
@@ -93,7 +93,7 @@ public class NoteTest {
         Thread.sleep(2000);
 
     }
-    @Test()
+    @Test(priority = 4)
     public void note_negativescenerios() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
@@ -105,7 +105,7 @@ public class NoteTest {
         from = globalVars.getFirstParam(currentMethodName);
         description = globalVars.getSecondParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonNotesPage.note_negativescenerios(from,description);
 
 

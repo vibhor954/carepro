@@ -127,8 +127,8 @@ public class NotePage extends CommonNotePage {
 
     @Override
     public boolean note_negativescenerios(String from, String description) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(note, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(note, 5);
         commonFunctions.clickElement(addnote,5);
         commonFunctions.clickElement(addnote2,5);
         commonFunctions.clickElement(selectfromuser, 5);
@@ -167,8 +167,8 @@ public class NotePage extends CommonNotePage {
 
     @Override
     public boolean updatenote(String from,String description,String updated) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(note, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(note, 5);
         commonFunctions.clickElement(addnote,5);
         commonFunctions.clickElement(selectfromuser, 5);
 
@@ -203,8 +203,8 @@ public class NotePage extends CommonNotePage {
 
     @Override
     public boolean verifysearch(String from, String description) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(note, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(note, 5);
         commonFunctions.clickElement(addnote,5);
         commonFunctions.clickElement(selectfromuser, 5);
 

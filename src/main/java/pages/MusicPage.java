@@ -147,8 +147,9 @@ public class MusicPage extends CommonMusicPage {
     @Override
     public boolean updatemusic(String title,String description,String type,String artist,String updated) throws InterruptedException {
         boolean isUpdateMusic=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(music, 5);
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(music, 5);
+        commonFunctions.navigateback();
         commonFunctions.clickElement(addicon,5);
         commonFunctions.sendKey(musictitleInputBox,title,5);
         commonFunctions.sendKey(musicdescriptionInputBox,description,5);
@@ -162,17 +163,11 @@ public class MusicPage extends CommonMusicPage {
         commonFunctions.clickElement(photos,5);
         commonFunctions.clickElement(photo,5);
         commonFunctions.clickElement(photoselect,5);
-        //Thread.sleep(1000);
         commonFunctions.clickElement(fullsizeButton,5);
-        // Thread.sleep(2000);
         commonFunctions.clickElement(submitButton,5);
 
         Thread.sleep(10000);
-        System.out.println(driver.getPageSource());
 
-        if (driver.getPageSource().contains(title)){
-            isUpdateMusic=true;
-        }
         List<WebElement> el= driver.findElementsByXPath("//*[@text='See all']");
         el.get(1).click();
         Thread.sleep(2000);
@@ -184,6 +179,7 @@ public class MusicPage extends CommonMusicPage {
         commonFunctions.clear(musictitleInputBox,5);
         commonFunctions.sendKey(musictitleInputBox,updated,5);
         commonFunctions.clickElement(tickIcon,5);
+        Thread.sleep(4000);
         if (driver.findElementsByXPath("//android.widget.TextView[@text='"+updated+"']").size()>0){
             isUpdateMusic=true;
         }
@@ -197,8 +193,9 @@ public class MusicPage extends CommonMusicPage {
     @Override
     public boolean play_pause() {
         boolean isPlayPause=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(music, 5);
+        //commonFunctions.clickElement(entertainmentTab, 5);
+        //commonFunctions.clickElement(music, 5);
+        commonFunctions.navigateback();
         commonFunctions.clickElement(playicon,5);
         commonFunctions.clickElement(pauseicon,5);
         isPlayPause= commonFunctions.clickElement(pauseicon,5);
@@ -212,7 +209,8 @@ public class MusicPage extends CommonMusicPage {
         boolean isfavorite=false;
         boolean isunfavorite=false;
         try {
-        commonFunctions.clickElement(entertainmentTab, 5);
+            commonFunctions.navigateback();
+        //commonFunctions.clickElement(entertainmentTab, 5);
         commonFunctions.clickElement(music, 5);
         commonFunctions.clickElement(addicon,5);
         commonFunctions.sendKey(musictitleInputBox,title,5);
@@ -227,15 +225,16 @@ public class MusicPage extends CommonMusicPage {
         commonFunctions.clickElement(photos,5);
         commonFunctions.clickElement(photo,5);
         commonFunctions.clickElement(photoselect,5);
-        //Thread.sleep(1000);
         commonFunctions.clickElement(fullsizeButton,5);
-        // Thread.sleep(2000);
         commonFunctions.clickElement(submitButton,5);
 
         Thread.sleep(10000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         commonFunctions.scrolldown();
+        Thread.sleep(1000);
         System.out.println(driver.findElementsById("com.care_pro:id/iv_musicFav").size());
        List<WebElement> el= driver.findElementsById("com.care_pro:id/iv_musicFav");
        el.get(2).click();
@@ -266,7 +265,7 @@ public class MusicPage extends CommonMusicPage {
             Log.error("Exception occurred in selectmusicasfavorite_unfavorite method" + e.getMessage());
             e.printStackTrace();
         }
-        Log.info("**********selectmusicasfavorite_unfavorite method ended" + globalVars.getPlatform() + "*********");
+        Log.info("********** selectmusicasfavorite_unfavorite method ended" + globalVars.getPlatform() + "*********");
         return isfavorite;
     }
 
@@ -275,8 +274,9 @@ public class MusicPage extends CommonMusicPage {
         boolean isVerifyGetInfo=false;
         boolean isDownload=false;
         try{
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(music, 5);
+            //        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(music, 5);
+            commonFunctions.navigateback();
         commonFunctions.clickElement(addicon,5);
         commonFunctions.sendKey(musictitleInputBox,title,5);
         commonFunctions.sendKey(musicdescriptionInputBox,description,5);

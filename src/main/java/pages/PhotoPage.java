@@ -34,7 +34,7 @@ public class PhotoPage extends CommonPhotoPage {
     AndroidElement photogallery;
     @AndroidFindBy(id = "com.care_pro:id/rl_add")
     AndroidElement addphotoButton;
-    @AndroidFindBy(id = "com.care_pro:id/iv_add_icon")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.TextView")
     AndroidElement addIcon;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Select photo from gallery']")
     AndroidElement selectphotofromgallery;
@@ -97,6 +97,7 @@ public class PhotoPage extends CommonPhotoPage {
         commonFunctions.clickElement(photo, 5);
         commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
+        Thread.sleep(6000);
         commonFunctions.clickElement(addIcon, 5);
         commonFunctions.clickElement(selectphotofromgallery,5);
         commonFunctions.clickElement(photos,5);
@@ -124,9 +125,9 @@ public class PhotoPage extends CommonPhotoPage {
     @Override
     public boolean addphotofromgallery_full(String folder) throws InterruptedException {
         boolean isPhotoAdded=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
-        commonFunctions.clickElement(photogallery,5);
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
+//        commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
         commonFunctions.clickElement(addIcon, 5);
         commonFunctions.clickElement(selectphotofromgallery,5);
@@ -154,9 +155,9 @@ public class PhotoPage extends CommonPhotoPage {
     @Override
     public boolean addphotofromcamera_crop() throws InterruptedException {
         boolean isPhotoAdded=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
-        commonFunctions.clickElement(photogallery,5);
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
+//        commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
         commonFunctions.clickElement(addIcon, 5);
         commonFunctions.clickElement(selectphotofromcamera,5);
@@ -183,9 +184,9 @@ public class PhotoPage extends CommonPhotoPage {
     @Override
     public boolean addphotofromcamera_full() throws InterruptedException {
         boolean isPhotoAdded=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
-        commonFunctions.clickElement(photogallery,5);
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
+//        commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
         commonFunctions.clickElement(addIcon, 5);
         commonFunctions.clickElement(selectphotofromcamera,5);
@@ -211,8 +212,9 @@ public class PhotoPage extends CommonPhotoPage {
     @Override
     public boolean slidephoto() throws InterruptedException {
         boolean isSlidePhoto=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
+        commonFunctions.navigateback();
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
         commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(slidephoto,5);
         if (driver.findElementsByXPath("//android.widget.TextView[@text='Slide Photo']").size()>0){
@@ -226,9 +228,10 @@ public class PhotoPage extends CommonPhotoPage {
     public boolean choosefavoritephoto(String folder) throws InterruptedException {
         boolean isFavouritePhoto=false;
         boolean isUnfavouritePhoto=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
-        commonFunctions.clickElement(photogallery,5);
+        commonFunctions.navigateback();
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
+//        commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
         Thread.sleep(1000);
         commonFunctions.clickElement(addIcon, 5);
@@ -269,9 +272,10 @@ public class PhotoPage extends CommonPhotoPage {
     @Override
     public boolean negativescenerios(String folder) throws InterruptedException {
         isVerifyNoteNegativeScenerios=false;
-        commonFunctions.clickElement(entertainmentTab, 5);
-        commonFunctions.clickElement(photo, 5);
-        commonFunctions.clickElement(photogallery,5);
+        commonFunctions.navigateback();
+//        commonFunctions.clickElement(entertainmentTab, 5);
+//        commonFunctions.clickElement(photo, 5);
+//        commonFunctions.clickElement(photogallery,5);
         commonFunctions.clickElement(addphotoButton,5);
         commonFunctions.clickElement(submitButton,5);
         Thread.sleep(1000);
