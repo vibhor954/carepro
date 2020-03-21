@@ -40,6 +40,7 @@ public abstract class CommonFunctions {
     public abstract void scrolldown();
     public abstract void navigateback();
     public abstract void waitforelementinvisible(WebElement element,long timeOutInSsec);
+    public abstract boolean waitforelementvisible(WebElement element,long timeOutInSsec);
 
 
 }

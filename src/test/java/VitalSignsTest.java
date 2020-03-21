@@ -24,7 +24,7 @@ public class VitalSignsTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
+    @Test(priority = 1)
     public void addvitalsigns() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
@@ -48,7 +48,7 @@ public class VitalSignsTest {
 
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addvitalsignsithotheroption() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
@@ -72,7 +72,7 @@ public class VitalSignsTest {
 
     }
 
-    @Test()
+    @Test(priority = 3)
     public void updatevitalsigns() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
@@ -99,7 +99,7 @@ public class VitalSignsTest {
 
     }
 
-    @Test()
+    @Test(priority = 4)
     public void verifysearchfunctionality() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
@@ -123,7 +123,7 @@ public class VitalSignsTest {
         Thread.sleep(2000);
 
     }
-    @Test()
+    @Test(priority = 5)
     public void vitalsigns_negativescenerios() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";

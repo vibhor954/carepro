@@ -24,6 +24,7 @@
             <class name="ArticlesTest"/>
             <class name="MusicTest"/>
             <class name="CameraTest"/>
+            <class name="ReminderTest"/>
 
         </classes>
     </test>

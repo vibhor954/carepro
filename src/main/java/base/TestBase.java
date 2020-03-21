@@ -110,7 +110,7 @@ public abstract class TestBase{
                     AppiumServer.stopServer();
 
             }
-            testBase.closeDriver();
+            //testBase.closeDriver();
         }
     }
 

@@ -107,14 +107,14 @@ public class VitalSignsPage extends CommonVitalSignsPage {
         commonFunctions.sendKey(addunit,units,5);
         commonFunctions.navigateback();
         commonFunctions.clickElement(submitButton,5);
-
-
-
         Thread.sleep(2000);
 
         if (driver.findElementsByXPath("//*[@text='"+text+"']").size()>0 ){
             isVitalSignsAdded=true;
         }
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
 
         return isVitalSignsAdded;
 
