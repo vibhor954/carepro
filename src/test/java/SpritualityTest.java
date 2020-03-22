@@ -25,15 +25,15 @@ public class SpritualityTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
-    public void spritualitymeditation() throws InterruptedException, IOException {
+    @Test
+    public void t1_spritualitymeditation() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "spritualitymeditation";
+        String currentMethodName = "t1_spritualitymeditation";
         commonSpritualityPage = CommonSpritualityPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonSpritualityPage.spritualitymeditation();
 
 
@@ -43,11 +43,11 @@ public class SpritualityTest {
 
     }
 
-    @Test()
-    public void spritualityvideos() throws InterruptedException, IOException {
+    @Test
+    public void t2_spritualityvideos() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "spritualityvideos";
+        String currentMethodName = "t2_spritualityvideos";
         commonSpritualityPage = CommonSpritualityPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 

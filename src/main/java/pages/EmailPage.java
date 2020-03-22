@@ -105,6 +105,7 @@ public class EmailPage extends CommonEmailPage {
             commonFunctions.sendKey(subjectinputBox,subject,5);
             commonFunctions.sendKey(descriptioninputBox,description,5);
             commonFunctions.clickElement(sendemailIcon, 5);
+            isMailSent=true;
             Utils.logFunctionLevelLogs(isMailSent, "composeemail" + globalVars.getPlatform());
         } catch (Exception e) {
             Log.error("Exception occurred in composeemail method" + e.getMessage());
@@ -118,21 +119,35 @@ public class EmailPage extends CommonEmailPage {
 
     @Override
     public boolean verifymailsent(String text ) {
+        try {
         commonFunctions.clickElement(sentTab,5);
+        Thread.sleep(3000);
+            System.out.println(driver.getPageSource());
 
         if (driver.getPageSource().contains(text)){
             isMailSent=true;
         }
+        } catch (Exception e) {
+            Log.error("Exception occurred in verifymailsent method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("**********verifymailsent method ended" + globalVars.getPlatform() + "*********");
         return isMailSent;
     }
 
     @Override
     public boolean verifymailreceived(String text) throws InterruptedException {
+        try {
         commonFunctions.clickElement(inboxTab,5);
         Thread.sleep(2000);
         if (driver.getPageSource().contains(text)){
             isMailReceived=true;
         }
+        } catch (Exception e) {
+            Log.error("Exception occurred in verifymailreceived method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("**********verifymailreceived method ended" + globalVars.getPlatform() + "*********");
         return isMailReceived;
     }
 
@@ -195,24 +210,31 @@ public class EmailPage extends CommonEmailPage {
 
     @Override
     public boolean emailnegativecases(String to,String subject,String description) throws InterruptedException {
+        boolean isVerifyEmailNegativeTestCases=false;
 
         commonFunctions.clickElement(composeIcon,5);
         commonFunctions.clickElement(sendemailIcon,5);
         if (driver.findElementsByXPath("//*[@text='Add at least one recipient']").size()>0){
-            isEmailSentWithoutReciepeient=false;
+            isVerifyEmailNegativeTestCases=true;
         }
         commonFunctions.sendKey(toinputBox,to,5);
         commonFunctions.clickElement(sendemailIcon,5);
         Thread.sleep(2000);
         if (driver.findElementsByXPath("//android.widget.TextView[@text='Do you want to send message without subject and description?']").size()>0){
-            isComposeEmailPoupDisplayed=true;
+            isVerifyEmailNegativeTestCases=true;
+        }
+        else{
+            isVerifyEmailNegativeTestCases=false;
         }
         commonFunctions.clickElement(noTextPopup,5);
         commonFunctions.clear(toinputBox,5);
         commonFunctions.sendKey(toinputBox,"abc",5);
-
+        commonFunctions.clickElement(sendemailIcon,5);
         if (driver.findElementsByXPath("//*[@text='Add at least one recipient']").size()>0){
-            isEmailSentWithInvalidEmail=false;
+            isVerifyEmailNegativeTestCases=true;
+        }
+        else{
+            isVerifyEmailNegativeTestCases=false;
         }
         commonFunctions.clear(toinputBox,5);
         commonFunctions.sendKey(toinputBox,"cbd@gmail.com",5);
@@ -221,15 +243,13 @@ public class EmailPage extends CommonEmailPage {
         commonFunctions.clickElement(sendemailIcon,5);
 
         if (driver.findElementsByXPath("//*[@text='Email address is not registered']").size()>0){
-            isEmailSentWithNonExistingEmail=false;
+            isVerifyEmailNegativeTestCases=true;
+        }else{
+            isVerifyEmailNegativeTestCases=false;
         }
+        commonFunctions.navigateback();
 
-
-
-
-
-
-        return false;
+        return isVerifyEmailNegativeTestCases;
     }
 
 }

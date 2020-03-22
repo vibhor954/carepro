@@ -81,7 +81,7 @@ public class SpritualityPage extends CommonSpritualityPage {
 
             commonFunctions.clickElement(sprituality, 5);
             commonFunctions.clickElement(spritualvideos, 5);
-            Thread.sleep(2000);
+            Thread.sleep(6000);
             commonFunctions.scrolldown();
             Thread.sleep(2000);
 

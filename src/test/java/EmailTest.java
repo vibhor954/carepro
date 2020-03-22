@@ -27,14 +27,14 @@ public class EmailTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test(priority = 1)
-    public void sendemail() throws InterruptedException, IOException {
+    @Test
+    public void t1_sendemail() throws InterruptedException, IOException {
         boolean isResult = false;
         String to = "";
         String subject = "";
         String description = "";
         String verification_text="";
-        String currentMethodName = "sendemail";
+        String currentMethodName = "t1_sendemail";
         commonEmailPage = CommonEmailPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
@@ -49,16 +49,15 @@ public class EmailTest {
 
         Utils.logStepInfo(isResult, "Send Email");
         Assert.isTrue(isResult, "Step-1: User failed to sent email!");
-        Thread.sleep(2000);
 
     }
 
-    @Test(priority = 2)
-    public void recieveemail() throws InterruptedException, IOException {
+    @Test
+    public void t2_recieveemail() throws InterruptedException, IOException {
         boolean isResult = false;
 
         String verification_text="";
-        String currentMethodName = "recieveemail";
+        String currentMethodName = "t2_recieveemail";
         commonEmailPage = CommonEmailPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
@@ -70,14 +69,13 @@ public class EmailTest {
 
         Utils.logStepInfo(isResult, "Recieve Email");
         Assert.isTrue(isResult, "Step-1: User failed to Recieve email!");
-        Thread.sleep(2000);
     }
 
-    @Test(priority = 3)
-    public void deleteemailsfrominbox() throws InterruptedException, IOException {
+    @Test
+    public void t3_deleteemailsfrominbox() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "deleteemailsfrominbox";
+        String currentMethodName = "t3_deleteemailsfrominbox";
         commonEmailPage = CommonEmailPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
@@ -87,31 +85,29 @@ public class EmailTest {
 
         Utils.logStepInfo(isResult, "Delete Emails from Inbox");
         Assert.isTrue(isResult, "Step-1: User failed to delete email from Inbox!");
-        Thread.sleep(2000);
     }
 
-    @Test(priority = 4)
-    public void deleteemailsfromsent() throws InterruptedException, IOException {
+    @Test
+    public void t4_deleteemailsfromsent() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "deleteemailsfrominbox";
+        String currentMethodName = "t4_deleteemailsfromsent";
         commonEmailPage = CommonEmailPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
-        isResult=commonEmailPage.deleteinboxemails();
+        isResult=commonEmailPage.deletesentemails();
         System.out.println(isResult);
 
 
         Utils.logStepInfo(isResult, "Delete Emails from Inbox");
         Assert.isTrue(isResult, "Step-1: User failed to delete email from Inbox!");
-        Thread.sleep(2000);
     }
 
-    @Test(priority = 5)
-    public void deleteemailsfromtrash() throws InterruptedException, IOException {
+    @Test
+    public void t5_deleteemailsfromtrash() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "deleteemailsfromtrash";
+        String currentMethodName = "t5_deleteemailsfromtrash";
         commonEmailPage = CommonEmailPage.getInstance();
         commonLoginPage=CommonLoginPage.getInstance();
 
@@ -121,7 +117,28 @@ public class EmailTest {
 
         Utils.logStepInfo(isResult, "Delete Emails from Trash");
         Assert.isTrue(isResult, "Step-1: User failed to delete email from Trash!");
-        Thread.sleep(2000);
+    }
+    @Test
+    public void t6_emailnegativecases() throws InterruptedException, IOException {
+        boolean isResult = false;
+        String to = "";
+        String subject = "";
+        String description = "";
+
+        String currentMethodName = "t6_emailnegativecases";
+        commonEmailPage = CommonEmailPage.getInstance();
+        commonLoginPage=CommonLoginPage.getInstance();
+        to = globalVars.getFirstParam(currentMethodName);
+        subject = globalVars.getSecondParam(currentMethodName);
+        description = globalVars.getThirdParam(currentMethodName);
+
+
+        isResult=commonEmailPage.emailnegativecases(to,subject,description);
+        System.out.println(isResult);
+
+
+        Utils.logStepInfo(isResult, "Email Negative Cases");
+        Assert.isTrue(isResult, "Step-1: User failed to verify Email Negative Cases");
     }
 
     @AfterTest

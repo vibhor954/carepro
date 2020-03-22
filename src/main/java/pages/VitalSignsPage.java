@@ -6,11 +6,14 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.windows.WindowsDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonFunctions;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 //import io.appium.java_client.android.AndroidKeyCode;
 
@@ -36,7 +39,7 @@ public class VitalSignsPage extends CommonVitalSignsPage {
     AndroidElement dateInputBox;
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.LinearLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget.GridView/android.widget.LinearLayout[5]/android.widget.LinearLayout/android.widget.TextView")
     AndroidElement vitalsigns;
-    @AndroidFindBy(id = "com.care_pro:id/pickdate_txt")
+    @AndroidFindBy(xpath = "//*[@index='0']")
     AndroidElement selectdate;
     @AndroidFindBy(id = "com.care_pro:id/rl_add_vitalsign")
     AndroidElement addvitalsignsButton;
@@ -93,28 +96,40 @@ public class VitalSignsPage extends CommonVitalSignsPage {
 
     @Override
     public boolean addvitalsigns(String name,String text,String units) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(vitalsigns, 5);
-        commonFunctions.clickElement(addvitalsignsButton, 5);
-        commonFunctions.clickElement(selectdate, 5);
-        commonFunctions.clickElement(okButton,5);
-        commonFunctions.clickElement(selectsource,5);
-        Thread.sleep(1000);
-        driver.findElementByXPath("//android.widget.TextView[@text='"+name+"']").click();
-        commonFunctions.clickElement(selecttesttype,5);
-        driver.findElementByXPath("//android.widget.TextView[@text='"+text+"']").click();
-        commonFunctions.clickElement(addunit,5);
-        commonFunctions.sendKey(addunit,units,5);
-        commonFunctions.navigateback();
-        commonFunctions.clickElement(submitButton,5);
-        Thread.sleep(2000);
+        try {
+            commonFunctions.clickElement(conciergeTab, 5);
+            commonFunctions.clickElement(vitalsigns, 5);
+            commonFunctions.clickElement(addvitalsignsButton, 5);
+            Thread.sleep(2000);
+            List<WebElement> el=driver.findElementsByClassName("android.widget.TextView");
+           // el.get(0).click();
+           // el.get(1).click();
+           // el.get(2).click();
+            //driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout").click();
 
-        if (driver.findElementsByXPath("//*[@text='"+text+"']").size()>0 ){
-            isVitalSignsAdded=true;
+            commonFunctions.clickElement(dateInputBox, 5);
+            commonFunctions.clickElement(okButton, 5);
+            commonFunctions.clickElement(selectsource, 5);
+            Thread.sleep(1000);
+            driver.findElementByXPath("//android.widget.TextView[@text='" + name + "']").click();
+            commonFunctions.clickElement(selecttesttype, 5);
+            driver.findElementByXPath("//android.widget.TextView[@text='" + text + "']").click();
+            commonFunctions.clickElement(addunit, 5);
+            commonFunctions.sendKey(addunit, units, 5);
+            commonFunctions.navigateback();
+            commonFunctions.clickElement(submitButton, 5);
+            Thread.sleep(2000);
+
+            if (driver.findElementsByXPath("//*[@text='" + text + "']").size() > 0) {
+                isVitalSignsAdded = true;
+            }
+            commonFunctions.clickElement(selectallcheckbox, 5);
+            commonFunctions.clickElement(deleteIcon, 5);
+            commonFunctions.clickElement(yesButton, 5);
         }
-        commonFunctions.clickElement(selectallcheckbox,5);
-        commonFunctions.clickElement(deleteIcon,5);
-        commonFunctions.clickElement(yesButton,5);
+        catch(Exception e){
+            e.printStackTrace();
+            }
 
         return isVitalSignsAdded;
 
@@ -122,8 +137,8 @@ public class VitalSignsPage extends CommonVitalSignsPage {
 
     @Override
     public boolean addvitalsignsithotheroption(String name,String text,String units) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(vitalsigns, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(vitalsigns, 5);
         commonFunctions.clickElement(addvitalsignsButton, 5);
         commonFunctions.clickElement(selectdate, 5);
         commonFunctions.clickElement(okButton,5);
@@ -161,8 +176,8 @@ public class VitalSignsPage extends CommonVitalSignsPage {
 
     @Override
     public boolean updatevitalsigns(String text, String name, String units, String update) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(vitalsigns, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(vitalsigns, 5);
         commonFunctions.clickElement(addvitalsignsButton, 5);
         commonFunctions.clickElement(selectdate, 5);
         commonFunctions.clickElement(okButton,5);
@@ -192,8 +207,8 @@ public class VitalSignsPage extends CommonVitalSignsPage {
 
     @Override
     public boolean verifysearch(String text, String name, String units) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(vitalsigns, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(vitalsigns, 5);
         commonFunctions.clickElement(addvitalsignsButton, 5);
         commonFunctions.clickElement(selectdate, 5);
         commonFunctions.clickElement(okButton,5);
@@ -231,8 +246,8 @@ public class VitalSignsPage extends CommonVitalSignsPage {
 
     @Override
     public boolean vitalsigns_negativescenerios(String text, String name, String units) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(vitalsigns, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(vitalsigns, 5);
         commonFunctions.clickElement(addvitalsignsButton, 5);
         commonFunctions.clickElement(submitButton,5);
         Thread.sleep(1000);

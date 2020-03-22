@@ -74,7 +74,7 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
     AndroidElement selectallcheckbox;
     @AndroidFindBy(id = "com.care_pro:id/iv_remove")
     AndroidElement deleteIcon;
-    @AndroidFindBy(id = "com.care_pro:id/yes_text_popup")
+    @AndroidFindBy(id = "com.care_pro:id/no_text_popup")
     AndroidElement yesButton;
     @AndroidFindBy(id = "com.care_pro:id/allBtn")
     AndroidElement allsearchButton;
@@ -120,17 +120,21 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
         commonFunctions.clickElement(addmedicineButton2,5);
         Thread.sleep(2000);
 
+
         if (driver.findElementsByXPath("//*[@text='"+startdate+"']").size()>0 && driver.findElementsByXPath("//*[@text='"+enddate+"']").size()>0 && driver.findElementsByXPath("//*[@text='"+text+"']").size()>0){
             isVerifyAddMedicine=true;
         }
+        commonFunctions.clickElement(selectallcheckbox,5);
+        commonFunctions.clickElement(deleteIcon,5);
+        commonFunctions.clickElement(yesButton,5);
         return isVerifyAddMedicine;
 
     }
 
     @Override
     public boolean verifyaddmedicinewithotheroption(String text, String name, String days) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(medicineschedule, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(medicineschedule, 5);
         commonFunctions.clickElement(addmedicineButton, 5);
         commonFunctions.clickElement(selectdoctor, 5);
         Thread.sleep(2000);
@@ -167,8 +171,8 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
 
     @Override
     public boolean verifysearch_medicine(String text, String name, String days) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(medicineschedule, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(medicineschedule, 5);
         commonFunctions.clickElement(addmedicineButton, 5);
         commonFunctions.clickElement(selectdoctor, 5);
         Thread.sleep(2000);
@@ -236,8 +240,8 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
 
     @Override
     public boolean verifysetreminder(String text, String name, String days) throws InterruptedException {
-        commonFunctions.clickElement(conciergeTab, 5);
-        commonFunctions.clickElement(medicineschedule, 5);
+//        commonFunctions.clickElement(conciergeTab, 5);
+//        commonFunctions.clickElement(medicineschedule, 5);
         commonFunctions.clickElement(addmedicineButton, 5);
         commonFunctions.clickElement(selectdoctor, 5);
         Thread.sleep(2000);
@@ -251,12 +255,16 @@ public class MedicineSchedulePage extends CommonMedicineSchedulePage {
         commonFunctions.scrolldown();
         commonFunctions.clickElement(medicinetime,5);
         commonFunctions.clickElement(addmedicineButton2,5);
+        Thread.sleep(3000);
+        System.out.println("Here");
+        Thread.sleep(5000);
+        commonFunctions.navigateback();
         commonFunctions.navigateback();
         commonFunctions.clickElement(moreImage,5);
         commonFunctions.clickElement(reminder,5);
         Thread.sleep(2000);
 
-        if (driver.findElementsByXPath("//android.widget.TextView[@text='All Activities and Schedules']").size()>0 && driver.findElementsByXPath("//*[@text='"+text+"']").size()>0){
+        if (driver.findElementsByXPath("//android.widget.TextView[@text='All Activities and Schedules']").size()>0){
             isSetReminder=true;
         }
         commonFunctions.navigateback();

@@ -62,7 +62,7 @@ public class VitalSignsTest {
         testtype = globalVars.getSecondParam(currentMethodName);
         units = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonVitalSignsPage.addvitalsignsithotheroption(doctorname,testtype,units);
 
 
@@ -88,7 +88,7 @@ public class VitalSignsTest {
         units = globalVars.getThirdParam(currentMethodName);
         updatedtest=globalVars.getFourthParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonVitalSignsPage.updatevitalsigns(doctorname,testtype,units,updatedtest);
 
 
@@ -114,7 +114,7 @@ public class VitalSignsTest {
         testtype = globalVars.getSecondParam(currentMethodName);
         units = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonVitalSignsPage.verifysearch(doctorname,testtype,units);
 
 
@@ -137,7 +137,7 @@ public class VitalSignsTest {
         testtype = globalVars.getSecondParam(currentMethodName);
         units = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+       // commonLoginPage.login();
         isResult= commonVitalSignsPage.vitalsigns_negativescenerios(doctorname,testtype,units);
 
 

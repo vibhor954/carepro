@@ -25,13 +25,13 @@ public class NoteTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test(priority = 1)
-    public void addnote() throws InterruptedException, IOException {
+    @Test
+    public void t1_addnote() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
         String description="";
 
-        String currentMethodName = "addnote";
+        String currentMethodName = "t1_addnote";
         commonLoginPage=CommonLoginPage.getInstance();
         commonNotesPage=CommonNotePage.getInstance();
         from = globalVars.getFirstParam(currentMethodName);
@@ -47,14 +47,14 @@ public class NoteTest {
 
     }
 
-    @Test(priority = 2)
-    public void updatenote() throws InterruptedException, IOException {
+    @Test
+    public void t2_updatenote() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
         String description="";
         String updated="";
 
-        String currentMethodName = "updatenote";
+        String currentMethodName = "t2_updatenote";
         commonLoginPage=CommonLoginPage.getInstance();
         commonNotesPage=CommonNotePage.getInstance();
         from = globalVars.getFirstParam(currentMethodName);
@@ -71,14 +71,14 @@ public class NoteTest {
 
     }
 
-    @Test(priority = 3)
-    public void verifysearch_note() throws InterruptedException, IOException {
+    @Test
+    public void t3_verifysearch_note() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
         String description="";
         String updated="";
 
-        String currentMethodName = "verifysearch_note";
+        String currentMethodName = "t3_verifysearch_note";
         commonLoginPage=CommonLoginPage.getInstance();
         commonNotesPage=CommonNotePage.getInstance();
         from = globalVars.getFirstParam(currentMethodName);
@@ -93,13 +93,13 @@ public class NoteTest {
         Thread.sleep(2000);
 
     }
-    @Test(priority = 4)
-    public void note_negativescenerios() throws InterruptedException, IOException {
+    @Test
+    public void t4_note_negativescenerios() throws InterruptedException, IOException {
         boolean isResult = false;
         String from="";
         String description="";
 
-        String currentMethodName = "note_negativescenerios";
+        String currentMethodName = "t4_note_negativescenerios";
         commonLoginPage=CommonLoginPage.getInstance();
         commonNotesPage=CommonNotePage.getInstance();
         from = globalVars.getFirstParam(currentMethodName);
@@ -109,8 +109,8 @@ public class NoteTest {
         isResult= commonNotesPage.note_negativescenerios(from,description);
 
 
-        Utils.logStepInfo(isResult, "Verify Search");
-        Assert.isTrue(isResult, "Step-1: User failed to Search!");
+        Utils.logStepInfo(isResult, "Verify Negative scenerios");
+        Assert.isTrue(isResult, "Step-1: User failed to Verify Negative scenerios!");
         Thread.sleep(2000);
 
     }

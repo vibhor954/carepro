@@ -24,14 +24,13 @@ public class LoginTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
-    public void loginwithvalidcredentials() throws InterruptedException {
+    @Test
+    public void t1_loginwithvalidcredentials() throws InterruptedException {
         boolean isResult = false;
-        System.out.println("Here");
 
         String email = "";
         String password = "";
-        String currentMethodName = "loginwithvalidcredentials";
+        String currentMethodName = "t1_loginwithvalidcredentials";
         commonLoginPage = CommonLoginPage.getInstance();
 
         email = globalVars.getFirstParam(currentMethodName);
@@ -43,17 +42,16 @@ public class LoginTest {
 
     }
 
-    @Test()
-    public void loginwithinvalidcredentials() throws InterruptedException {
+    @Test
+    public void t2_loginwithinvalidcredentials() throws InterruptedException {
         boolean isResult = false;
-        System.out.println("Here");
 
         String invalid_email = "";
         String invalid_password = "";
         String message = "";
         String valid_email = "";
         String valid_password = "";
-        String currentMethodName = "loginwithinvalidcredentials";
+        String currentMethodName = "t2_loginwithinvalidcredentials";
         commonLoginPage = CommonLoginPage.getInstance();
 
         invalid_email = globalVars.getFirstParam(currentMethodName);
@@ -64,7 +62,7 @@ public class LoginTest {
 
         isResult = commonLoginPage.loginwithinvalidcredentials(invalid_email, invalid_password, message, valid_email, valid_password);
         Utils.logStepInfo(isResult, "Login with Invalid credentials");
-        Assert.isTrue(isResult, "Step-1: User Passed to Login!");
+        Assert.isTrue(isResult, "Step-1: User failed to verify login with invalid credentials!");
 
     }
 

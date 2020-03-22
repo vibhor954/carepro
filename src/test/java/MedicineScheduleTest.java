@@ -22,14 +22,14 @@ public class MedicineScheduleTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
-    public void verifyaddmedicine() throws InterruptedException, IOException {
+    @Test
+    public void t1_verifyaddmedicine() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
         String medicinename="";
         String days="";
 
-        String currentMethodName = "verifyaddmedicine";
+        String currentMethodName = "t1_verifyaddmedicine";
         commonLoginPage=CommonLoginPage.getInstance();
         commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
         medicinename = globalVars.getFirstParam(currentMethodName);
@@ -46,21 +46,21 @@ public class MedicineScheduleTest {
 
     }
 
-    @Test()
-    public void verifyaddmedicinewithotheroption() throws InterruptedException, IOException {
+    @Test
+    public void t2_verifyaddmedicinewithotheroption() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
         String medicinename="";
         String days="";
 
-        String currentMethodName = "verifyaddmedicinewithotheroption";
+        String currentMethodName = "t2_verifyaddmedicinewithotheroption";
         commonLoginPage=CommonLoginPage.getInstance();
         commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
         medicinename = globalVars.getFirstParam(currentMethodName);
         doctorname = globalVars.getSecondParam(currentMethodName);
         days = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMedicineSchedulePage.verifyaddmedicinewithotheroption(medicinename,doctorname,days);
 
 
@@ -70,21 +70,21 @@ public class MedicineScheduleTest {
 
     }
 
-    @Test()
-    public void verifysearch_update_medicine() throws InterruptedException, IOException {
+    @Test
+    public void t3_verifysearch_update_medicine() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
         String medicinename="";
         String days="";
 
-        String currentMethodName = "verifysearch_update_medicine";
+        String currentMethodName = "t3_verifysearch_update_medicine";
         commonLoginPage=CommonLoginPage.getInstance();
         commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
         medicinename = globalVars.getFirstParam(currentMethodName);
         doctorname = globalVars.getSecondParam(currentMethodName);
         days = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMedicineSchedulePage.verifysearch_medicine(medicinename,doctorname,days);
 
 
@@ -94,21 +94,21 @@ public class MedicineScheduleTest {
 
     }
 
-    @Test()
-    public void verifysetreminder() throws InterruptedException, IOException {
+    @Test
+    public void t4_verifysetreminder() throws InterruptedException, IOException {
         boolean isResult = false;
         String doctorname="";
         String medicinename="";
         String days="";
 
-        String currentMethodName = "verifysetreminder";
+        String currentMethodName = "t4_verifysetreminder";
         commonLoginPage=CommonLoginPage.getInstance();
         commonMedicineSchedulePage=CommonMedicineSchedulePage.getInstance();
         medicinename = globalVars.getFirstParam(currentMethodName);
         doctorname = globalVars.getSecondParam(currentMethodName);
         days = globalVars.getThirdParam(currentMethodName);
 
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonMedicineSchedulePage.verifysetreminder(medicinename,doctorname,days);
 
 

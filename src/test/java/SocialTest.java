@@ -22,14 +22,14 @@ public class SocialTest {
         globalVars = TestBase.setup(this.getClass().getSimpleName());
     }
 
-    @Test()
-    public void verifyfacebook() throws InterruptedException, IOException {
+    @Test
+    public void t1_verifyfacebook() throws InterruptedException, IOException {
         boolean isResult = false;
 
-        String currentMethodName = "verifyfacebook";
+        String currentMethodName = "t1_verifyfacebook";
         commonLoginPage=CommonLoginPage.getInstance();
         commonSocialPage=CommonSocialPage.getInstance();
-        commonLoginPage.login();
+        //commonLoginPage.login();
         isResult= commonSocialPage.verifyfacebook();
 
 
@@ -39,12 +39,12 @@ public class SocialTest {
 
     }
 
-    @Test()
-    public void verifytwitter() throws InterruptedException, IOException {
+    @Test
+    public void t2_verifytwitter() throws InterruptedException, IOException {
         boolean isResult = false;
         commonSocialPage=CommonSocialPage.getInstance();
 
-        String currentMethodName = "verifytwitter";
+        String currentMethodName = "t2_verifytwitter";
         isResult= commonSocialPage.verifytwitter();
 
 

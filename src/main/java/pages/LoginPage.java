@@ -98,6 +98,7 @@ public class LoginPage extends CommonLoginPage {
         boolean isUserLoggedIn = true;
         boolean isUserLoggedInAfterAppRepoen = false;
         boolean isPass = false;
+        try {
 
         commonFunctions.clickElement(loginButton, 5);
         Thread.sleep(2000);
@@ -139,6 +140,12 @@ public class LoginPage extends CommonLoginPage {
         if (isUserLoggedIn == false && isUserLoggedInAfterAppRepoen == true) {
             isPass = true;
         }
+            Utils.logFunctionLevelLogs(isPass, "loginwithinvalidcredentials" + globalVars.getPlatform());
+        } catch (Exception e) {
+            Log.error("Exception occurred in loginwithinvalidcredentials method" + e.getMessage());
+            e.printStackTrace();
+        }
+        Log.info("**********Login method ended" + globalVars.getPlatform() + "*********");
 
         return isPass;
     }

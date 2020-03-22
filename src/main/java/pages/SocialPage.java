@@ -64,7 +64,7 @@ public class SocialPage extends CommonSocialPage {
             commonFunctions.clickElement(social, 5);
             commonFunctions.clickElement(facebook, 5);
             Thread.sleep(2000);
-            if (driver.findElementsById("com.care_pro:id/wv_webview").size()>0 && driver.findElementsByXPath("//android.widget.TextView[@text='Facebook']").size()>0){
+            if (driver.findElementsByAccessibilityId("CREATE NEW FACEBOOK ACCOUNT").size()>0){
                 isFacebookVerified=true;
             }
             driver.navigate().back();
@@ -83,12 +83,14 @@ public class SocialPage extends CommonSocialPage {
         try {
             commonFunctions.clickElement(twitter, 5);
             commonFunctions.clickElement(twitterloginButton,5);
-            Thread.sleep(2000);
+            Thread.sleep(4000);
             if (driver.findElementsByXPath("//android.view.View[@text='Log in to Twitter']").size()>0){
                 isTwitterVerified=true;
             }
-            driver.navigate().back();
-            driver.navigate().back();
+            commonFunctions.navigateback();
+            commonFunctions.navigateback();
+            commonFunctions.navigateback();
+            commonFunctions.navigateback();
             Utils.logFunctionLevelLogs(isTwitterVerified, "verifytwitter" + globalVars.getPlatform());
         } catch (Exception e) {
             Log.error("Exception occurred in verifytwitter method" + e.getMessage());
